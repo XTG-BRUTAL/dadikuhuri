@@ -136,7 +136,7 @@ const time2 = moment().tz('Asia/Kolkata').format('HH:mm:ss')
 
 //══════════[ Module Export ]══════════//
 		
-module.exports = DadiBrutalOP = async (DadiBrutalOP, mek, _welkom) => {
+module.exports = DogeXeonOP = async (DogeXeonOP, mek, _welkom) => {
 	try {
         if (!mek.hasNewMessage) return
         mek = mek.messages.all()[0]
@@ -163,12 +163,12 @@ module.exports = DadiBrutalOP = async (DadiBrutalOP, mek, _welkom) => {
 		const isCmd = body.startsWith(prefix)
 		const q = args.join(' ')
 		const txt = mek.message.conversation
-		const botNumber = DadiBrutalOP.user.jid
+		const botNumber = DogeXeonOP.user.jid
 		const ownerNumber = [`${owner}@s.whatsapp.net`, `919101765679@s.whatsapp.net`]
 		const isGroup = from.endsWith('@g.us')
 		let sender = isGroup ? mek.participant : mek.key.remoteJid
-		let senderr = mek.key.fromMe ? DadiBrutalOP.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
-		const groupMetadata = isGroup ? await DadiBrutalOP.groupMetadata(from) : ''.toString
+		let senderr = mek.key.fromMe ? DogeXeonOP.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
+		const groupMetadata = isGroup ? await DogeXeonOP.groupMetadata(from) : ''.toString
 		const groupName = isGroup ? groupMetadata.subject : ''
 		const groupId = isGroup ? groupMetadata.jid : ''
 		const groupMembers = isGroup ? groupMetadata.participants : ''
@@ -177,11 +177,11 @@ module.exports = DadiBrutalOP = async (DadiBrutalOP, mek, _welkom) => {
 		const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
 		const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 		const isGroupAdmins = groupAdmins.includes(sender) || false
-        m = simple.smsg(DadiBrutalOP, mek)
+        m = simple.smsg(DogeXeonOP, mek)
         var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
         const messagesD = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
-		const conts = mek.key.fromMe ? DadiBrutalOP.user.jid : DadiBrutalOP.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-        const pushname = mek.key.fromMe ? DadiBrutalOP.user.name : conts.notify || conts.vname || conts.name || '-'    
+		const conts = mek.key.fromMe ? DogeXeonOP.user.jid : DogeXeonOP.contacts[sender] || { notify: jid.replace(/@.+/, '') }
+        const pushname = mek.key.fromMe ? DogeXeonOP.user.name : conts.notify || conts.vname || conts.name || '-'    
     
 		const isAntiLink = isGroup ? _antilink.includes(from) : false
 		const isWelkom = isGroup ? _welkom.includes(from) : false
@@ -189,14 +189,14 @@ module.exports = DadiBrutalOP = async (DadiBrutalOP, mek, _welkom) => {
 		const isNsfw = isGroup ? _nsfw.includes(from) : false
 		const isOwner = ownerNumber.includes(sender)
 		const isMybot = isOwner || mek.key.fromMe
-		let bio_nya = await DadiBrutalOP.getStatus(sender)
+		let bio_nya = await DogeXeonOP.getStatus(sender)
 		try {
 			bio_user = `${bio_nya.status}`
 		} catch {
 			bio_user = '-'
 			}
 			try {
-		pporang = await DadiBrutalOP.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
+		pporang = await DogeXeonOP.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
 		      } catch {
 		pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 		      }
@@ -206,10 +206,10 @@ module.exports = DadiBrutalOP = async (DadiBrutalOP, mek, _welkom) => {
 
 const sendFileFromUrl = async(link, type, options) => {
 hasil = await getBuffer(link)
-DadiBrutalOP.sendMessage(from, hasil, type, options).catch(e => {
+DogeXeonOP.sendMessage(from, hasil, type, options).catch(e => {
 fetch(link).then((hasil) => {
-DadiBrutalOP.sendMessage(from, hasil, type, options).catch(e => {
-DadiBrutalOP.sendMessage(from, { url : link }, type, options).catch(e => {
+DogeXeonOP.sendMessage(from, hasil, type, options).catch(e => {
+DogeXeonOP.sendMessage(from, { url : link }, type, options).catch(e => {
 reply
 console.log(e)
 })
@@ -238,7 +238,7 @@ console.log(e)
           `ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${asw}`,
           (err) => {
             let media = fs.readFileSync(asw);
-            DadiBrutalOP.sendMessage(to, media, MessageType.sticker, { quoted: mek });
+            DogeXeonOP.sendMessage(to, media, MessageType.sticker, { quoted: mek });
             fs.unlinkSync(filess);
             fs.unlinkSync(asw);
           }
@@ -261,7 +261,7 @@ console.log(e)
                     let palak = './temp' + names + '.webp'
                     exec(`ffmpeg -i ${ajg} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${palak}`, (err) => {
                         let media = fs.readFileSync(palak)
-                        DadiBrutalOP.sendMessage(from, media, MessageType.sticker, {quoted:mek})
+                        DogeXeonOP.sendMessage(from, media, MessageType.sticker, {quoted:mek})
                         fs.unlinkSync(ajg)
                         fs.unlinkSync(palak)
                     });
@@ -312,7 +312,7 @@ footerText: fortext,
 buttons: but,
 headerType: 1
 }
-DadiBrutalOP.sendMessage(from, buttonMessages, buttonsMessage, {
+DogeXeonOP.sendMessage(from, buttonMessages, buttonsMessage, {
 quoted: mek
 })
 }
@@ -323,11 +323,11 @@ footerText: desc1,
 buttons: but,
 headerType: 1
 }
-DadiBrutalOP.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
+DogeXeonOP.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
 }
 const sendButImage = async(id, text1, desc1, gam1, but = [], options = {}) => {
 kma = gam1
-mhan = await DadiBrutalOP.prepareMessage(from, kma, image)
+mhan = await DogeXeonOP.prepareMessage(from, kma, image)
 const buttonMessages = {
 imageMessage: mhan.message.imageMessage,
 contentText: text1,
@@ -335,11 +335,11 @@ footerText: desc1,
 buttons: but,
 headerType: 4
 }
-DadiBrutalOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+DogeXeonOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 const sendButVideo = async(id, text1, desc1, vid1, but = [], options = {}) => {
 kma = vid1
-mhan = await DadiBrutalOP.prepareMessage(from, kma, video)
+mhan = await DogeXeonOP.prepareMessage(from, kma, video)
 const buttonMessages = {
 videoMessage: mhan.message.videoMessage,
 contentText: text1,
@@ -347,11 +347,11 @@ footerText: desc1,
 buttons: but,
 headerType: 5
 }
-DadiBrutalOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+DogeXeonOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
 kma = gam1
-mhan = await DadiBrutalOP.prepareMessage(from, kma, location)
+mhan = await DogeXeonOP.prepareMessage(from, kma, location)
 const buttonMessages = {
 locationMessage: mhan.message.locationMessage,
 contentText: text1,
@@ -359,37 +359,37 @@ footerText: desc1,
 buttons: but,
 headerType: 6
 }
-DadiBrutalOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+DogeXeonOP.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 
 //══════════[ Fake ]══════════//
 
 const listmsg = (from, title, desc, list) => {
-let po = DadiBrutalOP.prepareMessageFromContent(from, {"listMessage": {"title": title,"description": desc,"buttonText": "𝗠𝗘𝗡𝗨","footerText": `${tanggal}`,"listType": "SINGLE_SELECT","sections": list}}, {})
-return DadiBrutalOP.relayWAMessage(po, {waitForAck: true})
+let po = DogeXeonOP.prepareMessageFromContent(from, {"listMessage": {"title": title,"description": desc,"buttonText": "𝗠𝗘𝗡𝗨","footerText": `${tanggal}`,"listType": "SINGLE_SELECT","sections": list}}, {})
+return DogeXeonOP.relayWAMessage(po, {waitForAck: true})
 }
 const reply = (teks) => {
-DadiBrutalOP.sendMessage(from, teks, text, {quoted:mek})
+DogeXeonOP.sendMessage(from, teks, text, {quoted:mek})
 }
 const sendMess = (hehe, teks) => {
-DadiBrutalOP.sendMessage(hehe, teks, text)
+DogeXeonOP.sendMessage(hehe, teks, text)
 }
 const isUrl = (url) => {
 return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
         }
 const mentions = (teks, memberr, id) => {
-(id == null || id == undefined || id == false) ? DadiBrutalOP.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : DadiBrutalOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": memberr } })
+(id == null || id == undefined || id == false) ? DogeXeonOP.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : DogeXeonOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": memberr } })
 }
 const costum = (pesan, tipe, target, target2) => {
-DadiBrutalOP.sendMessage(from, pesan, tipe, { quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` } } })
+DogeXeonOP.sendMessage(from, pesan, tipe, { quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` } } })
 }
 const ftrol = { key : { participant : '0@s.whatsapp.net' }, message: { orderMessage: { itemCount : 5555, status: 1, surface : 1, message: `${ucapanWaktu} ${pushname}`, orderTitle: `${ucapanWaktu} ${pushname}`, thumbnail: thumb, sellerJid: '0@s.whatsapp.net' }}}
 const floc = { key : { participant : '0@s.whatsapp.net' }, message: { liveLocationMessage: { caption: `${ucapanWaktu} ${pushname}`, jpegThumbnail: thumb }}}
 const fvid = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289643739077-1613049930@g.us" } : {}) }, message: { "videoMessage": {  "title": `${ucapanWaktu} ${pushname}`, "h": `${ucapanWaktu} ${pushname}`, 'duration': '99999', 'caption': `${ucapanWaktu} ${pushname}`, 'jpegThumbnail': thumb }}}
 const fvoc = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289643739077-1613049930@g.us" } : {}) }, message: { "audioMessage": { "mimetype":"audio/ogg; codecs=opus", "seconds": "99999", "ptt": "true" }}}
 const fgi = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289643739077-1613049930@g.us" } : {}) }, message: { "videoMessage": { "title": `${ucapanWaktu} ${pushname}`, "h": `${ucapanWaktu} ${pushname}`, 'duration': '99999', 'gifPlayback': 'true', 'caption': `${ucapanWaktu} ${pushname}`, 'jpegThumbnail': thumb }}}
-const textImg = (teks) => { return DadiBrutalOP.sendMessage(from, teks, text, {quoted: fgi, thumbnail: fs.readFileSync('./media/dogetb.jpg')})}
-const fakeitem = (teks) => { DadiBrutalOP.sendMessage(from, teks, text, { quoted: { key:{ fromMe:false, participant:`0@s.whatsapp.net`, ...(from ? { remoteJid :"6289523258649-1604595598@g.us" }: {})},message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync("./media/dogetb.jpg"),"itemCount":9999999999,"status":"INQUIRY","surface":"CATALOG","message": `${ucapanWaktu} ${pushname}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}},contextInfo: {"forwardingScore":999,"isForwarded":true}, sendEphemeral: true})}
+const textImg = (teks) => { return DogeXeonOP.sendMessage(from, teks, text, {quoted: fgi, thumbnail: fs.readFileSync('./media/dogetb.jpg')})}
+const fakeitem = (teks) => { DogeXeonOP.sendMessage(from, teks, text, { quoted: { key:{ fromMe:false, participant:`0@s.whatsapp.net`, ...(from ? { remoteJid :"6289523258649-1604595598@g.us" }: {})},message:{"orderMessage":{"orderId":"174238614569481","thumbnail":fs.readFileSync("./media/dogetb.jpg"),"itemCount":9999999999,"status":"INQUIRY","surface":"CATALOG","message": `${ucapanWaktu} ${pushname}`,"token":"AR6xBKbXZn0Xwmu76Ksyd7rnxI+Rx87HfinVlW4lwXa6JA=="}}},contextInfo: {"forwardingScore":999,"isForwarded":true}, sendEphemeral: true})}
 
 //══════════[ Storage ]══════════//
 
@@ -417,7 +417,7 @@ mime = Mimetype.gif
 if(mime.split("/")[0] === "audio"){
 mime = Mimetype.mp4Audio
 }
-DadiBrutalOP.sendMessage(to, media, type, { quoted: fgi, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
+DogeXeonOP.sendMessage(to, media, type, { quoted: fgi, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
                     
 fs.unlinkSync(filename)
 });
@@ -430,27 +430,27 @@ return crypto.randomBytes(size).toString('hex').slice(0, size)
 //══════════[ Grup ]══════════//
 
 const hideTag = async function(from, text){
-let anugroupsend = await DadiBrutalOP.groupMetadata(from)
+let anugroupsend = await DogeXeonOP.groupMetadata(from)
 let members = anugroupsend.participants
 let ane = []
 for (let i of members){
 ane.push(i.jid)
 }
-DadiBrutalOP.sendMessage(from, {text:text, jpegThumbnail:fs.readFileSync('media/dogepic1.jpg')}, 'extendedTextMessage', {contextInfo: {"mentionedJid": ane}})
+DogeXeonOP.sendMessage(from, {text:text, jpegThumbnail:fs.readFileSync('media/dogepic1.jpg')}, 'extendedTextMessage', {contextInfo: {"mentionedJid": ane}})
 }
 const hideTagKontak = async function(from, nomor, nama){
 let vcard = 'BEGIN:VCARD\n' + 'VERSION:3.0\n' + 'FN:' + nama + '\n' + 'ORG:Kontak\n' + 'TEL;type=CELL;type=VOICE;waid=' + nomor + ':+' + nomor + '\n' + 'END:VCARD'
-let anuvcardoke = await DadiBrutalOP.groupMetadata(from)
+let anuvcardoke = await DogeXeonOP.groupMetadata(from)
 let members = anuvcardoke.participants
 let ane = []
 for (let i of members){
 ane.push(i.jid)
 }
-DadiBrutalOP.sendMessage(from, { displayname: nama, vcard: vcard}, MessageType.contact, {contextInfo: {"mentionedJid": ane}})
+DogeXeonOP.sendMessage(from, { displayname: nama, vcard: vcard}, MessageType.contact, {contextInfo: {"mentionedJid": ane}})
 }
 const sendKontak = (from, nomor, nama) => {
 const vcard = 'BEGIN:VCARD\n' + 'VERSION:3.0\n' + 'FN:' + nama + '\n' + `ORG:Developer ${botname}\n` + 'TEL;type=CELL;type=VOICE;waid=' + nomor + ':+' + nomor + '\n' + 'END:VCARD'
-DadiBrutalOP.sendMessage(from, { displayname: nama, vcard: vcard}, MessageType.contact, {quoted:mek, contextInfo: { forwardingScore: 508, isForwarded: true }})
+DogeXeonOP.sendMessage(from, { displayname: nama, vcard: vcard}, MessageType.contact, {quoted:mek, contextInfo: { forwardingScore: 508, isForwarded: true }})
 }
 
 //══════════[ Automatic Reply ]══════════//
@@ -458,19 +458,19 @@ DadiBrutalOP.sendMessage(from, { displayname: nama, vcard: vcard}, MessageType.c
 for (let anji of setik){
 				if (budy === anji){
 					result = fs.readFileSync(`./media/sticker/${anji}.webp`)
-					DadiBrutalOP.sendMessage(from, result, sticker, { quoted: mek})
+					DogeXeonOP.sendMessage(from, result, sticker, { quoted: mek})
 					}
 			}
 			for (let anju of vien){
 				if (budy === anju){
 					result = fs.readFileSync(`./media/vn/${anju}.mp3`)
-					DadiBrutalOP.sendMessage(from, result, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
+					DogeXeonOP.sendMessage(from, result, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
 					}
 			}
 			for (let anjh of imagi){
 				if (budy === anjh){
 					result = fs.readFileSync(`./media/image/${anjh}.jpg`)
-					DadiBrutalOP.sendMessage(from, result, image, { quoted: mek})
+					DogeXeonOP.sendMessage(from, result, image, { quoted: mek})
 					}
 				  }
 
@@ -537,7 +537,7 @@ if (isGroupAdmins) return
 var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 reply(` *「 GROUP LINK DETECTED 」*\nYou sent the group chat link, sorry you will be kicked from the group`)
 setTimeout(() => {
-DadiBrutalOP.groupRemove(from, [kic]).catch((e) => { reply(`BOTS MUST BE ADMIN`) })
+DogeXeonOP.groupRemove(from, [kic]).catch((e) => { reply(`BOTS MUST BE ADMIN`) })
 }, 0)
 }
 
@@ -548,17 +548,17 @@ if (isGroupAdmins) return
 reply('Mark as read\n'.repeat(300))
 reply(`「 *VIRUS DETECTED* 」\n\nYou sent a virtex, sorry you will be kicked from the group`)
 console.log(color('[KICK]', 'red'), color('Received a text virus!', 'yellow'))
-DadiBrutalOP.groupRemove(from, [sender])
+DogeXeonOP.groupRemove(from, [sender])
 }     
 
 //══════════[ Dll ]══════════//
 
 if (autoread){
-DadiBrutalOP.chatRead(from, "read")
+DogeXeonOP.chatRead(from, "read")
 } else if (autoketik) {
-DadiBrutalOP.updatePresence(from, Presence.composing)
+DogeXeonOP.updatePresence(from, Presence.composing)
 } else if (autovn) {
-DadiBrutalOP.updatePresence(from, Presence.recording)
+DogeXeonOP.updatePresence(from, Presence.recording)
 }
 
 		colors = ['red', 'white', 'black', 'blue', 'yellow', 'green']
@@ -581,7 +581,7 @@ case 'help':
 
 timestampe = speed();
 latensie = speed() - timestampe
-const { wa_version, os_version } = DadiBrutalOP.user.phone
+const { wa_version, os_version } = DogeXeonOP.user.phone
 pemilik = `${owner}@s.whatsapp.net`
 menu =
 `*_${ucapanWaktu} @${senderr.split('@')[0]}_*
@@ -598,7 +598,7 @@ ${gaya1} *Owner Name* : ${ownername}
 ${gaya1} *Owner Number* : @${pemilik.split('@')[0]}
 ${gaya1} *Host Name :* ${os.hostname()}
 ${gaya1} *Platform :* ${os.platform()}
-${gaya1} *Wa Version :* ${DadiBrutalOP.user.phone.wa_version}
+${gaya1} *Wa Version :* ${DogeXeonOP.user.phone.wa_version}
 ${gaya1} *Mode :* ${self ? "Self" : "Public"}
 ${gaya1} *Autoread* : ${autoread ? "Active" : "Off"}
 ${gaya1} *Autotype* : ${autoketik ? "Active" : "Off"}
@@ -613,7 +613,7 @@ teks =
 `_Please Select Button Below_
 _If You Are A Mod User_
 _Please Type ${prefix}command_`
-DadiBrutalOP.sendMessage(from, { contentText: `${teks}`, footerText: `${menu}`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'MENU 🗃️' }, type: 1 },{ buttonId: `${prefix}sc`, buttonText: { displayText: 'SCRIPT 📝' }, type: 1 },{ buttonId: `${prefix}developer`, buttonText: { displayText: 'DEVELOPER 👨🏼‍💻' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr,pemilik]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${teks}`, footerText: `${menu}`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'MENU 🗃️' }, type: 1 },{ buttonId: `${prefix}sc`, buttonText: { displayText: 'SCRIPT 📝' }, type: 1 },{ buttonId: `${prefix}developer`, buttonText: { displayText: 'DEVELOPER 👨🏼‍💻' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr,pemilik]}}}, 'buttonsMessage')
 break
 case 'command':
 
@@ -729,7 +729,7 @@ rows: [
 }],
 listType: 1
 }
-DadiBrutalOP.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [senderr]},quoted:fgi})
+DogeXeonOP.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [senderr]},quoted:fgi})
 break
 case 'allmenu':
 
@@ -773,7 +773,7 @@ ${gaya2} ${prefix}groupinfo
 ${gaya2} ${prefix}grouplink
 ${gaya2} ${prefix}onlinelist
 ${gaya2} ${prefix}resetgrouplink`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'downloadmenu':
 
@@ -795,7 +795,7 @@ ${gaya2} ${prefix}instagram _video link_
 ${gaya2} ${prefix}herodetail _hero name_
 ${gaya2} ${prefix}herolist
 ${gaya2} ${prefix}lyrics _song name_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'makermenu':
 
@@ -944,7 +944,7 @@ ${gaya2} ${prefix}makerkaneki _Text1&Text2_
 ${gaya2} ${prefix}rem _Text1&Text2_
 ${gaya2} ${prefix}lolimaker _Text1&Text2_
 ${gaya2} ${prefix}gura _Text1&Text2_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'gamemenu':
 
@@ -953,7 +953,7 @@ menu =
 
 ${gaya2} ${prefix}truth
 ${gaya2} ${prefix}dare`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'randomimage':
 
@@ -989,7 +989,7 @@ ${gaya2} ${prefix}wallpaperhp2
 ${gaya2} ${prefix}wallpaperkpop
 ${gaya2} ${prefix}wallpaperblackpink
 ${gaya2} ${prefix}wallpapergame`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'randomvideo':
 
@@ -1005,7 +1005,7 @@ ${gaya2} ${prefix}storygalau
 ${gaya2} ${prefix}storytruk
 ${gaya2} ${prefix}storybus
 ${gaya2} ${prefix}storyanime`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}abcde`, buttonText: { displayText: '\n\nAKU ADALAH GAY' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}abcde`, buttonText: { displayText: '\n\nAKU ADALAH GAY' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'asupanmenu':
 
@@ -1021,7 +1021,7 @@ ${gaya2} ${prefix}santuy
 ${gaya2} ${prefix}ukhty
 ${gaya2} ${prefix}gheayubi
 ${gaya2} ${prefix}nantalia`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'cecanmenu':
 
@@ -1045,7 +1045,7 @@ ${gaya2} ${prefix}indonesia
 ${gaya2} ${prefix}korea
 ${gaya2} ${prefix}japan
 ${gaya2} ${prefix}malaysia`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'animemenu':
 
@@ -1115,7 +1115,7 @@ ${gaya2} ${prefix}yuki
 ${gaya2} ${prefix}yumeko
 ${gaya2} ${prefix}fanart
 ${gaya2} ${prefix}nino`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'nsfwmenu':
 
@@ -1191,7 +1191,7 @@ ${gaya2} ${prefix}pussy
 ${gaya2} ${prefix}thighs
 ${gaya2} ${prefix}yuri
 ${gaya2} ${prefix}bokep`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'stickermenu':
 
@@ -1210,7 +1210,7 @@ ${gaya2} ${prefix}semoji _Emoji_
 ${gaya2} ${prefix}stcmemepic _Up Txt|Down Txt_
 ${gaya2} ${prefix}stcmeme _Up Txt|Down Txt_
 ${gaya2} ${prefix}memegenerator _Text_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'funmenu':
 
@@ -1248,7 +1248,7 @@ ${gaya2} ${prefix}beautycheck [tag]
 ${gaya2} ${prefix}gaycheck [tag]
 ${gaya2} ${prefix}lesbiancheck [tag]
 ${gaya2} ${prefix}charactercheck [tag]`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'soundmenu':
 
@@ -1328,7 +1328,7 @@ ${gaya2} ${prefix}sound71
 ${gaya2} ${prefix}sound72
 ${gaya2} ${prefix}sound73
 ${gaya2} ${prefix}sound74`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'ocrmenu':
 
@@ -1338,7 +1338,7 @@ menu =
 ${gaya2} ${prefix}ninjaname _Name_
 ${gaya2} ${prefix}stylishcoolname
 ${gaya2} ${prefix}ssweb _URL_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'convertmenu':
 
@@ -1363,7 +1363,7 @@ ${gaya2} ${prefix}tomp3 _reply video_
 ${gaya2} ${prefix}toimg _reply sticker_
 ${gaya2} ${prefix}tourl _reply image/vid_
 ${gaya2} ${prefix}tts _code text_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'levelingmenu':
 
@@ -1372,7 +1372,7 @@ menu =
 
 ${gaya2} ${prefix}profile
 ${gaya2} ${prefix}level`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'searchmenu':
 
@@ -1384,7 +1384,7 @@ ${gaya2} ${prefix}ytsearch _Query_
 ${gaya2} ${prefix}pinterest _Query_
 ${gaya2} ${prefix}googleimg _Query_
 ${gaya2} ${prefix}google _Query_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'apkmenu':
 
@@ -1399,7 +1399,7 @@ ${gaya2} ${prefix}toraccino _Apk Name_
 ${gaya2} ${prefix}uapkpro _Apk Name_
 ${gaya2} ${prefix}apkmody _Apk Name_
 ${gaya2} ${prefix}apkshub _Apk Name_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'othermenu':
 
@@ -1414,7 +1414,7 @@ ${gaya2} ${prefix}owner
 ${gaya2} ${prefix}developer
 ${gaya2} ${prefix}script
 ${gaya2} ${prefix}delete _Reply to bot messages_`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'ownermenu':
 
@@ -1445,7 +1445,7 @@ ${gaya2} ${prefix}clearall
 ${gaya2} ${prefix}leaveall
 ${gaya2} ${prefix}public
 ${gaya2} ${prefix}self`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal}_*`, buttons: [{ buttonId: `${prefix}command`, buttonText: { displayText: 'BACK ⬅️' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER 👤' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 case 'abcde':
 
@@ -1472,7 +1472,7 @@ menu =
 
 For those who want to buy script or interested in any of the above
 Can request, if interested please contact the developer`
-DadiBrutalOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal} - ${time}_*`, buttons: [{ buttonId: `${prefix}payment`, buttonText: { displayText: 'PAYMENT 💸' }, type: 1 },{ buttonId: `${prefix}developer`, buttonText: { displayText: 'DEVELOPER 👨🏼‍💻' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr]}}}, 'buttonsMessage')
+DogeXeonOP.sendMessage(from, { contentText: `${menu}`, footerText: `*_${tanggal} - ${time}_*`, buttons: [{ buttonId: `${prefix}payment`, buttonText: { displayText: 'PAYMENT 💸' }, type: 1 },{ buttonId: `${prefix}developer`, buttonText: { displayText: 'DEVELOPER 👨🏼‍💻' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: fakeimage, contextInfo: {mentionedJid: [senderr]}}}, 'buttonsMessage')
 break
 case 'bayar':
 case 'payment':
@@ -1570,9 +1570,9 @@ case 'spotify':{
     ini_txt += `Popularity : ${get_result.popularity}\n`
     ini_txt += `Preview : ${get_result.preview_url}\n`
     thumbnail = await getBuffer(get_result.thumbnail)
-    await DadiBrutalOP.sendMessage(from, thumbnail, image, { quoted: mek, caption: ini_txt })
+    await DogeXeonOP.sendMessage(from, thumbnail, image, { quoted: mek, caption: ini_txt })
     get_audio = await getBuffer(get_result.link)
-    await DadiBrutalOP.sendMessage(from, get_audio, audio, { mimetype: 'audio/mpeg', filename: `${get_result.title}.mp3`, quoted: mek})
+    await DogeXeonOP.sendMessage(from, get_audio, audio, { mimetype: 'audio/mpeg', filename: `${get_result.title}.mp3`, quoted: mek})
     }
     break
    case 'soundcloud':
@@ -1589,7 +1589,7 @@ case 'spotify':{
                     txt += `*• Url  :* ${data.url}\n\n`
                     txt += `*Please wait a moment, in the process of delivery...*`
                     sendFileFromUrl(from, data.thumbnail, txt, mek)
-                    DadiBrutalOP.sendMessage(from , await getBuffer(data.medias[0].url), audio,{ quoted: mek, mimetype: 'audio/mp4' })
+                    DogeXeonOP.sendMessage(from , await getBuffer(data.medias[0].url), audio,{ quoted: mek, mimetype: 'audio/mp4' })
 				})
 			break
 	case 'telesticker': case 'telegramsticker': case 'tstiker': {
@@ -1598,7 +1598,7 @@ case 'spotify':{
 			var telestc = await zee.Telesticker(`${q}`)
 			await reply(mess.wait)
 			for (let i = 0; i < (telestc.length < 10 ? telestc.length : 10); i++) {
-			DadiBrutalOP.sendMessage(from, await getBuffer(telestc[i].url), sticker, {mimetype:'image/webp',quoted: mek})
+			DogeXeonOP.sendMessage(from, await getBuffer(telestc[i].url), sticker, {mimetype:'image/webp',quoted: mek})
 			}
 		}
 		break
@@ -1615,7 +1615,7 @@ case 'tiktoknowm':
 				.then(async (a) => {
 					me = `*Link* : ${a.data}`
 					noweem = await getBuffer(nowm)
-					DadiBrutalOP.sendMessage(from,noweem , MessageType.video, {mimetype: 'video/mp4',quoted: mek})
+					DogeXeonOP.sendMessage(from,noweem , MessageType.video, {mimetype: 'video/mp4',quoted: mek})
 					})
 				}).catch((err) => reply(`Invalid link`))
 			
@@ -1632,7 +1632,7 @@ case 'tiktokwm':
 				.then(async (a) => {
 					me = `*Link* : ${a.data}`
 					weem = await getBuffer(wm)
-					DadiBrutalOP.sendMessage(from,weem , MessageType.video, {mimetype: 'video/mp4',quoted: mek})
+					DogeXeonOP.sendMessage(from,weem , MessageType.video, {mimetype: 'video/mp4',quoted: mek})
 					})
 				}).catch((err) => reply(`Invalid link`))
 			
@@ -1650,7 +1650,7 @@ case 'tiktokmusic':
 				axios.get(`https://tinyurl.com/api-create.php?url=${audio}`)
 				.then(async (a) => {
 					audnha = await getBuffer(audio)
-					DadiBrutalOP.sendMessage(from,audnha , MessageType.document, {mimetype: 'audio/mp4',filename: `Tiktok Music.mp3`,quoted: mek})
+					DogeXeonOP.sendMessage(from,audnha , MessageType.document, {mimetype: 'audio/mp4',filename: `Tiktok Music.mp3`,quoted: mek})
 					})
 				}).catch((err) => reply(`Invalid link`))
 			
@@ -1732,14 +1732,14 @@ reply(mess.wait)
 bo = args.join(" ")
 ini = await fetchJson(`https://apikey-bear3.herokuapp.com/api/yt/playmp4?query=${bo}&apikey=${KingOfBearKey}`)
 mp4 = await getBuffer(ini.url)
-DadiBrutalOP.sendMessage(from, mp4, video, { quoted: mek, caption: `Here is your video🐶` })
+DogeXeonOP.sendMessage(from, mp4, video, { quoted: mek, caption: `Here is your video🐶` })
 break
 case 'mp3':
 reply(mess.wait)
 bo = args.join(" ")
 ini = await fetchJson(`https://apikey-bear3.herokuapp.com/api/yt/playmp3?query=${bo}&apikey=${KingOfBearKey}`)
 mp3 = await getBuffer(ini.url)
-DadiBrutalOP.sendMessage(from, mp3, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
+DogeXeonOP.sendMessage(from, mp3, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
 break
 case 'ytmp3':
 
@@ -1748,7 +1748,7 @@ url = args.join(' ')
 anump3 = await fetchJson(`https://apidhani.herokuapp.com/api/download/ytmp3?url=${url}&apikey=${dhakey}`)
 ytmp3 = await getBuffer(anump3.result.url)
 reply(`_Audio is being processed, please wait a while longer_`)
-DadiBrutalOP.sendMessage(from, ytmp3, audio, {mimetype:"audio/mp4", quoted:mek})
+DogeXeonOP.sendMessage(from, ytmp3, audio, {mimetype:"audio/mp4", quoted:mek})
 break
 case 'ytmp4':
 
@@ -1757,7 +1757,7 @@ url = args.join(' ')
 anump4 = await fetchJson(`https://apidhani.herokuapp.com/api/download/ytmp4?url=${url}&apikey=${dhakey}`)
 ytmp4 = await getBuffer(anump4.result.url)
 reply(`_The video is being processed, please wait a few more moments_`)
-DadiBrutalOP.sendMessage(from, ytmp4, video, {caption:`Done✓`, thumbnail:Buffer.alloc(0), quoted:mek})
+DogeXeonOP.sendMessage(from, ytmp4, video, {caption:`Done✓`, thumbnail:Buffer.alloc(0), quoted:mek})
 break
 
 //══════════[ INTAKE FEATURES ]══════════//
@@ -1910,43 +1910,43 @@ just give credit / add in tqtq
                 case 'exo':
                 reply(mess.wait)
                     getBuffer(`https://api.lolhuman.xyz/api/random/${command}?apikey=${Lolhumanbykur}`).then((gambar) => {
-                        DadiBrutalOP.sendMessage(from, gambar, image, { quoted: mek })
+                        DogeXeonOP.sendMessage(from, gambar, image, { quoted: mek })
                     })
                     break
                    case 'fox':  
                    anufox= await fetchJson(`https://some-random-api.ml/img/fox`)
                    anu1 = await getBuffer(anufox.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'dog':  
                    anudog = await fetchJson(`https://some-random-api.ml/img/dog`)
                    anu1 = await getBuffer(anudog.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'cat':
                    anucat = await fetchJson(`https://some-random-api.ml/img/cat`)
                    anu1 = await getBuffer(anucat.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'panda':  
                    anupanda = await fetchJson(`https://some-random-api.ml/img/panda`)
                    anu1 = await getBuffer(anupanda.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'panda1':  
                    anupandao = await fetchJson(`https://some-random-api.ml/img/red_panda`)
                    anu1 = await getBuffer(anupandao.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'bird': 
                    anubird = await fetchJson(`https://some-random-api.ml/img/birb`)
                    anu1 = await getBuffer(anubird.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
                    case 'koala':  
                    anukoala = await fetchJson(`https://some-random-api.ml/img/koala`)
                    anu1 = await getBuffer(anukoala.link)
-                   DadiBrutalOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anu1, image, {caption: `Here you go!`, quoted: mek})
                    break
 case 'ppcp':
 case 'ppcouple':
@@ -2081,7 +2081,7 @@ break
                                 case 'art':
                 reply(mess.wait)
                     getBuffer(`https://api.lolhuman.xyz/api/random/${command}?apikey=${Lolhumanbykur}`).then((gambar) => {
-                        DadiBrutalOP.sendMessage(from, gambar, image, { quoted: mek })
+                        DogeXeonOP.sendMessage(from, gambar, image, { quoted: mek })
                     })
                     break
 case 'waifu':
@@ -2155,33 +2155,33 @@ type: 1,
 break
              case 'sao':
                 reply(mess.wait)
-				DadiBrutalOP.updatePresence(from, Presence.composing) 
+				DogeXeonOP.updatePresence(from, Presence.composing) 
 				 data = fs.readFileSync('./lib/swortartonline.js');
                  jsonData = JSON.parse(data);
                  randIndex = Math.floor(Math.random() * jsonData.length);
                  randKey = jsonData[randIndex];
                  swordartonline = await getBuffer(randKey.result)
-                 DadiBrutalOP.sendMessage(from, swordartonline, image, {quoted: mek, caption: 'swort art online\nDADIKUHURI'})
+                 DogeXeonOP.sendMessage(from, swordartonline, image, {quoted: mek, caption: 'swort art online\nDADIKUHURI'})
 				 break
 				case 'hsdxd':
 				reply(mess.wait)
-				 DadiBrutalOP.updatePresence(from, Presence.composing) 
+				 DogeXeonOP.updatePresence(from, Presence.composing) 
 				 data = fs.readFileSync('./lib/highschooldxd.js');
                  jsonData = JSON.parse(data);
                  randIndex = Math.floor(Math.random() * jsonData.length);
                  randKey = jsonData[randIndex];
                  highschooldxd = await getBuffer(randKey.result)
-                 DadiBrutalOP.sendMessage(from, highschooldxd, image, {quoted: mek, caption: 'Here u go!'})
+                 DogeXeonOP.sendMessage(from, highschooldxd, image, {quoted: mek, caption: 'Here u go!'})
 				break
 				 case 'lovelive':
 				reply(mess.wait)
-				 DadiBrutalOP.updatePresence(from, Presence.composing) 
+				 DogeXeonOP.updatePresence(from, Presence.composing) 
 				 data = fs.readFileSync('./lib/lovelive.js');
                  jsonData = JSON.parse(data);
                  randIndex = Math.floor(Math.random() * jsonData.length);
                  randKey = jsonData[randIndex];
                  lovelive = await getBuffer(randKey.result)
-                 DadiBrutalOP.sendMessage(from, lovelive, image, {quoted: mek, caption: 'Here u go!'})
+                 DogeXeonOP.sendMessage(from, lovelive, image, {quoted: mek, caption: 'Here u go!'})
 				break
 				
 //----> NSFW FEATURES <----//
@@ -2279,7 +2279,7 @@ break
 if (!isNsfw) return reply(mess.only.nsfw)
                 reply(mess.wait)
                     await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${Lolhuman}`).then((gambar) => {
-                       DadiBrutalOP.sendMessage(from, gambar, image, { quoted: mek })
+                       DogeXeonOP.sendMessage(from, gambar, image, { quoted: mek })
                     })
                     break
                 case 'bj':
@@ -2320,7 +2320,7 @@ if (!isNsfw) return reply(mess.only.nsfw)
 if (!isNsfw) return reply(mess.only.nsfw)
                 reply(mess.wait)
                     getBuffer(`https://api.lolhuman.xyz/api/random2/${command}?apikey=${Lolhumanbykur}`).then((gambar) => {
-                        DadiBrutalOP.sendMessage(from, gambar, image, { quoted: mek })
+                        DogeXeonOP.sendMessage(from, gambar, image, { quoted: mek })
                     })
                     break
 
@@ -2363,7 +2363,7 @@ just give credit / add in tqtq
                     if (args.length == 0) return reply(`Example: ${prefix + command} BRUTAL`)
                     ini_txt = args.join(" ")
                     getBuffer(`https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${lolkey}&text=${ini_txt}`).then((gambar) => {
-                        DadiBrutalOP.sendMessage(from, gambar, image, {thumbnail: Buffer.alloc(0), caption: `Here you go!`, quoted : mek}) 
+                        DogeXeonOP.sendMessage(from, gambar, image, {thumbnail: Buffer.alloc(0), caption: `Here you go!`, quoted : mek}) 
                     })
                     break
 case 'blackpink':
@@ -2488,7 +2488,7 @@ teks = args.join(" ")
 reply(mess.wait)
 anuapidhani = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/${command}?apikey=${dhakey}&text=${teks}`)
 oke = await getBuffer(anuapidhani.result)
-DadiBrutalOP.sendMessage(from, oke, image, {quoted: mek, caption: 'Here u go!😛'})
+DogeXeonOP.sendMessage(from, oke, image, {quoted: mek, caption: 'Here u go!😛'})
 break
 case 'hartatahta': 
 
@@ -2496,7 +2496,7 @@ if (args.length < 1) return reply(`*Wher is the text?*\n_Example : ${prefix + co
 teks = args.join(" ")
 reply(mess.wait)
 harta = await getBuffer(`https://apidhani.herokuapp.com/api/maker/harta-tahta?apikey=${dhakey}&text=${teks}`)
-DadiBrutalOP.sendMessage(from, harta, image, {quoted: mek, caption: 'Here u go!😛'})
+DogeXeonOP.sendMessage(from, harta, image, {quoted: mek, caption: 'Here u go!😛'})
 break
 
 //----> 2 TEXT <----//
@@ -2510,7 +2510,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anubit = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/8bit?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anubit.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'pornhub':
 
@@ -2521,7 +2521,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuphub = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/pornhub?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuphub.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'glitch':
 
@@ -2532,7 +2532,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuglitch = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/glitch?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuglitch.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'glitch2':
 
@@ -2543,7 +2543,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anug2 = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/glitch2?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anug2.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'layered':
 
@@ -2554,7 +2554,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anulayered = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/layered?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anulayered.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case '3dsteel':
 
@@ -2565,7 +2565,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anu3dstl = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/3dsteel?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anu3dstl.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'realistic':
 
@@ -2576,7 +2576,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anurlstc = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/realistic?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anurlstc.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'lionlogo':
 
@@ -2587,7 +2587,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anullo = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/lionlogo?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anullo.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'ninjalogo':
 
@@ -2598,7 +2598,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anunlogo = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/ninjalogo?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anunlogo.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'wolf':
 
@@ -2609,7 +2609,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuwolf = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/logowolf?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuwolf.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'wolf2':
 
@@ -2620,7 +2620,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuw2 = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/logowolf2?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuw2.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'halloween3':
 
@@ -2631,7 +2631,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuh3 = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/halloween3?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuh3.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'marvel':
 
@@ -2642,7 +2642,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anumvl = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/marvelstudio?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anumvl.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'marvel2':
 
@@ -2653,7 +2653,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anumvl2 = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/marvelstudio2?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anumvl2.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'cinematichorror':
 
@@ -2664,7 +2664,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anucmcr = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/cinematichorror?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anucmcr.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'avengers':
 
@@ -2675,7 +2675,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anuavgr = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/avengerslogo?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anuavgr.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'graffiti3':
 
@@ -2686,7 +2686,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anugrf3 = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/coolwallgraffiti?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anugrf3.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'captainamerica':
 
@@ -2697,7 +2697,7 @@ var F2 = F.split("&")[1];
 reply(mess.wait)
 anucaptainca = await fetchJson(`https://apidhani.herokuapp.com/api/textpro/captainamerica?apikey=${dhakey}&text1=${F1}&text2=${F2}`)
 pornhub = await getBuffer(anucaptainca.result)
-DadiBrutalOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, pornhub, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'girlneko':
 
@@ -2707,7 +2707,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlneko = await getBuffer(`https://apidhani.herokuapp.com/api/maker/girlneko?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlneko, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlneko, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'sadboy':
 
@@ -2717,7 +2717,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlneko2 = await getBuffer(`https://apidhani.herokuapp.com/api/maker/sadboy?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlneko2, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlneko2, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'makerkaneki':
 
@@ -2727,7 +2727,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlneko8383 = await getBuffer(`https://apidhani.herokuapp.com/api/maker/kaneki?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlneko8383, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlneko8383, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'rem':
 
@@ -2737,7 +2737,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlneko11111 = await getBuffer(`https://apidhani.herokuapp.com/api/maker/rem?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlneko11111, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlneko11111, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'lolimaker':
 
@@ -2747,7 +2747,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlnekojkjk = await getBuffer(`https://apidhani.herokuapp.com/api/maker/lolimaker?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlnekojkjk, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlnekojkjk, image, {caption: `Here u go!😛`, quoted: mek})
 break
 case 'gura':
 
@@ -2757,7 +2757,7 @@ var F1 = F.split("&")[0];
 var F2 = F.split("&")[1]; 
 reply(mess.wait)
 girlnekoooo = await getBuffer(`https://apidhani.herokuapp.com/api/maker/gura?apikey=${dhakey}&text=${F1}&text2=${F2}`)
-DadiBrutalOP.sendMessage(from, girlnekoooo, image, {caption: `Here u go!😛`, quoted: mek})
+DogeXeonOP.sendMessage(from, girlnekoooo, image, {caption: `Here u go!😛`, quoted: mek})
 break
                          case 'wolf3':
                          
@@ -2765,7 +2765,7 @@ break
                    F = body.slice(6)
                    reply(mess.wait)
                    anuwolf3 = await getBuffer(`${ApiZeks}/api/wolflogo?apikey=${zeksApikey}&text1=zeeoneofc&text2=${F}`)
-                   DadiBrutalOP.sendMessage(from, anuwolf3, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it?`, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anuwolf3, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it?`, quoted: mek})
                    break
                           case 't3d':
                           
@@ -2773,7 +2773,7 @@ break
                    F = body.slice(5)
                    reply(mess.wait)
                    anut3d = await getBuffer(`${ApiZeks}/api/text3dbox?apikey=${zeksApikey}&text=${F}`)
-                   DadiBrutalOP.sendMessage(from, anut3d, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anut3d, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break
        case 'logoa':
        
@@ -2783,7 +2783,7 @@ break
 				   var F2 = F.split("|")[1]; 
                    reply(mess.wait)
                    anulogoa = await getBuffer(`${ApiZeks}/api/logoaveng?text1=${F1}&text2=${F2}&apikey=${zeksApikey}`)
-                   DadiBrutalOP.sendMessage(from, anulogoa, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anulogoa, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break
        case 'phlogo':  
        
@@ -2793,7 +2793,7 @@ break
 				   var F2 = F.split("|")[1]; 
                    reply(mess.wait)
                    anuphlogo = await getBuffer(`${ApiZeks}/api/phlogo?text1=${F1}&text2=${F2}&apikey=${zeksApikey}`)
-                   DadiBrutalOP.sendMessage(from, anuphlogo, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anuphlogo, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break
        case 'marvel3':
        
@@ -2803,28 +2803,28 @@ break
 				   var F2 = F.split("|")[1]; 
                    reply(mess.wait)
                    anumrvl3 = await getBuffer(`${ApiZeks}/api/marvellogo?text1=${F1}&text2=${F2}&apikey=${zeksApikey}`)
-                   DadiBrutalOP.sendMessage(from, anumrvl3, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anumrvl3, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break
        case 'leavest':  
                    if (args.length < 1) return reply(`[  ×  ] Example :\n*${prefix}${command} BRUTAL*`)
                    F = body.slice(9)
                    reply(mess.wait)
                    anulvst = await getBuffer(`${ApiZeks}/api/leavest?text=${F}&apikey=${zeksApikey}`)
-                   DadiBrutalOP.sendMessage(from, anulvst, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anulvst, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break                   
        case 'notewrite':
                    if (args.length < 1) return reply(`[  ×  ] Example :\n*${prefix}${command} BRUTAL*`)
                    F = body.slice(7)
                    reply(mess.wait)
                    anunw = await getBuffer(`${ApiZeks}/api/nulis?text=${F}&apikey=${zeksApikey}`)
-                   DadiBrutalOP.sendMessage(from, anunw, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anunw, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break
        case 'neon2':
                    if (args.length < 1) return reply(`[  ×  ] Example :\n*${prefix}${command} BRUTAL*`)
                    F = body.slice(7)
                    reply(mess.wait)
                    anunion2 = await getBuffer(`${ApiZeks}/api/bneon?apikey=${zeksApikey}&text=${F}`)
-                   DadiBrutalOP.sendMessage(from, anunion2, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
+                   DogeXeonOP.sendMessage(from, anunion2, image, {thumbnail: Buffer.alloc(0),caption: `OK it's done\n\nHow is it? `, quoted: mek})
                    break 
 
 //══════════[ OTHER FEATURES ]══════════//
@@ -2840,7 +2840,7 @@ vcard2 = 'BEGIN:VCARD\n'
 + `ORG: Owner Of DADI KUHURI ;\n`
 + `TEL;type=CELL;type=VOICE;waid=${owner}:${owner}\n`
 + 'END:VCARD'.trim()
-DadiBrutalOP.sendMessage(from, {displayName: `The owner ${botname}`, vcard: vcard2}, contact, 
+DogeXeonOP.sendMessage(from, {displayName: `The owner ${botname}`, vcard: vcard2}, contact, 
 { quoted: fgi, 
 })
 reply(`_The above contact is my owner 🐶🦄_`)
@@ -2857,11 +2857,11 @@ vcard2 = 'BEGIN:VCARD\n'
 + `ORG: Developer Of DADI KUHURI ;\n`
 + `TEL;type=CELL;type=VOICE;waid=${developerNo}:${developerNo}\n`
 + 'END:VCARD'.trim()
-DadiBrutalOP.sendMessage(from, {displayName: `The owner ${botname}`, vcard: vcard2}, contact, 
+DogeXeonOP.sendMessage(from, {displayName: `The owner ${botname}`, vcard: vcard2}, contact, 
 { quoted: fgi, 
 })
 const devsound = fs.readFileSync('./media/botdev.mp3')
-DadiBrutalOP.sendMessage(from, devsound, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+DogeXeonOP.sendMessage(from, devsound, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
 break
 case 'sc':
 case 'script':
@@ -2890,7 +2890,7 @@ case 'd':
 case 'del':
 case 'delete':
 
-DadiBrutalOP.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
+DogeXeonOP.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 break
 
  //══════════[ SEARCH FEATURES ]══════════//
@@ -3158,7 +3158,7 @@ case 'sound72':
 case 'sound73':
 case 'sound74':
 ini_buffer = await getBuffer(`https://github.com/saipulanuar/Api-Github/raw/main/sound/${command}.mp3`)
-await DadiBrutalOP.sendMessage(from, ini_buffer, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
+await DogeXeonOP.sendMessage(from, ini_buffer, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek})
 break
        
 //══════════[ OCR FEATURES ]══════════//
@@ -3181,70 +3181,70 @@ if (args.length < 1) return reply('Where is the url?')
 teks = q
 anussweb = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${teks}`)
 buff = await getBuffer(anussweb.screenshot)
-DadiBrutalOP.sendMessage(from, buff, image, {quoted: mek, caption : teks})
+DogeXeonOP.sendMessage(from, buff, image, {quoted: mek, caption : teks})
 break
 
 //══════════[ CONVERT FEATURES ]══════════//
 
       case 'squirrel':
         encmedia012 = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-        media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia012)
+        media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia012)
         ran = getRandom('.mp3')
         exec(`ffmpeg -i ${media} -af atempo=1/2,asetrate=44500*2/1 ${ran}`, (err, stderr, stdout) => {
           fs.unlinkSync(media)
           if (err) return reply('Error!')
           hah = fs.readFileSync(ran)
-          DadiBrutalOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+          DogeXeonOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
           fs.unlinkSync(ran)
         })
         break
       case 'blub':
         if (!isQuotedAudio) return reply('Reply audio ')
         encmediakekek = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-        media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediakekek)
+        media = await DogeXeonOP.downloadAndSaveMediaMessage(encmediakekek)
         ran = getRandom('.mp3')
         exec(`ffmpeg -i ${media} -filter:a "atempo=0.9,asetrate=95100" ${ran}`, (err, stderr, stdout) => {
           fs.unlinkSync(media)
           if (err) return reply('Error!')
           hah = fs.readFileSync(ran)
-          DadiBrutalOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+          DogeXeonOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
           fs.unlinkSync(ran)
         })
         break
       case 'ghost':
         encmedia777 = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-        media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia777)
+        media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia777)
         ran = getRandom('.mp3')
         exec(`ffmpeg -i ${media} -filter:a "atempo=1.6,asetrate=3486" ${ran}`, (err, stderr, stdout) => {
           fs.unlinkSync(media)
           if (err) return reply('Error!')
           hah = fs.readFileSync(ran)
-          DadiBrutalOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+          DogeXeonOP.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
           fs.unlinkSync(ran)
         })
         break
       case 'cutesound':
         encmedia100 = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-        media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia100)
+        media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia100)
         ran = getRandom('.mp3')
         exec(`ffmpeg -i ${media} -filter:a "atempo=1.0,asetrate=50000" ${ran}`, (err, stderr, stdout) => {
           fs.unlinkSync(media)
           if (err) return reply('Error!')
           riu = fs.readFileSync(ran)
-          DadiBrutalOP.sendMessage(from, riu, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+          DogeXeonOP.sendMessage(from, riu, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
           fs.unlinkSync(ran)
         })
         break
 case 'slowmo': case 'slow':{
 								try {
 										encmedia22 = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-										media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia22)
+										media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia22)
 										ran = getRandom('.mp3')
 										exec(`ffmpeg -i ${media} -filter:a "atempo=0.7,asetrate=44100" ${ran}`, (err, stderr, stdout) => {
 											fs.unlinkSync(media)
 											if (err) return reply('Error!')
 											uhh = fs.readFileSync(ran)
-											DadiBrutalOP.sendMessage(from, uhh, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
+											DogeXeonOP.sendMessage(from, uhh, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
 											fs.unlinkSync(ran)
 											})
 											} catch (e) {
@@ -3255,13 +3255,13 @@ case 'slowmo': case 'slow':{
 case 'fast':{
 									try {
 										encmedia11 = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-										media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia11)
+										media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia11)
 										ran = getRandom('.mp3')
 										exec(`ffmpeg -i ${media} -filter:a "atempo=1.3,asetrate=43000" ${ran}`, (err, stderr, stdout) => {
 											fs.unlinkSync(media)
 											if (err) return reply('Error!')
 											hah = fs.readFileSync(ran)
-											DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
+											DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
 											fs.unlinkSync(ran)
 											})
 											} catch (e) {
@@ -3271,13 +3271,13 @@ case 'fast':{
 									break
 case 'vibra': case 'vibrato':{
 									encmedia33 = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-									media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia33)
+									media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia33)
 									ran = getRandom('.mp3')
 									exec(`ffmpeg -i ${media} -filter_complex "vibrato=f=16" ${ran}`, (err, stderr, stdout) => {
 										fs.unlinkSync(media)
 										if (err) return reply('Error!')
 										hah = fs.readFileSync(ran)
-										DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, quoted: mek})
+										DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, quoted: mek})
 										fs.unlinkSync(ran)
 										})
 										}
@@ -3285,93 +3285,93 @@ case 'vibra': case 'vibrato':{
     case 'nightcore':            
       	  if (!isQuotedAudio) return reply('Reply Audionya')
 		  night = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-		  core = await DadiBrutalOP.downloadAndSaveMediaMessage(night)
+		  core = await DogeXeonOP.downloadAndSaveMediaMessage(night)
 		  ran = getRandom('.mp3')
 		  reply(mess.wait)
 		  exec(`ffmpeg -i ${core} -filter:a atempo=1.06,asetrate=44100*1.25 ${ran}`, (err, stderr, stdout) => {
 		  fs.unlinkSync(core)
 		  if (err) return reply('Error!')
 		  hah = fs.readFileSync(ran)
-		  DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:false, quoted: mek, ptt: true})
+		  DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:false, quoted: mek, ptt: true})
 		  fs.unlinkSync(ran)
 		  })
 	      break
  case 'vnsec':
 encmediam = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					mediam = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediam)
+					mediam = await DogeXeonOP.downloadAndSaveMediaMessage(encmediam)
 					cokmatane = Number(args[0])
 					hah = fs.readFileSync(mediam)
-						DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', duration: cokmatane, ptt: true, quoted:mek})
+						DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', duration: cokmatane, ptt: true, quoted:mek})
 						fs.unlinkSync(mediam)
 				break
 				case 'vidsec':
 				encmedian = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					median = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedian)
+					median = await DogeXeonOP.downloadAndSaveMediaMessage(encmedian)
 					cokmatane = Number(args[0])
 					hah = fs.readFileSync(median)
-						DadiBrutalOP.sendMessage(from, hah, video, {mimetype: 'video/mp4', duration: cokmatane, quoted: mek})
+						DogeXeonOP.sendMessage(from, hah, video, {mimetype: 'video/mp4', duration: cokmatane, quoted: mek})
 						fs.unlinkSync(median)
 				break
  case 'robot':
 encmedial = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-medial = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedial)
+medial = await DogeXeonOP.downloadAndSaveMediaMessage(encmedial)
 ran = getRandom('.mp3')
 exec(`ffmpeg -i ${medial} -filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75" ${ran}`, (err, stderr, stdout) => {
 fs.unlinkSync(medial)
 if (err) return reply(mess.error.api)
 hah = fs.readFileSync(ran)
-DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', duration: 359996400, ptt:true, quoted: mek})
+DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', duration: 359996400, ptt:true, quoted: mek})
 fs.unlinkSync(ran)
 })
 break
 case 'fat':
 					encmediaz = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					mediaz = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediaz)
+					mediaz = await DogeXeonOP.downloadAndSaveMediaMessage(encmediaz)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${mediaz} -filter:a "atempo=1.6,asetrate=22100" ${ran}`, (err, stderr, stdout) => {
 						fs.unlinkSync(mediaz)
 						if (err) return ephe('Error!')
 						hah = fs.readFileSync(ran)
-					DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, duration: 359996400, quoted:mek})
+					DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, duration: 359996400, quoted:mek})
 						fs.unlinkSync(ran)
 					})
 					break
 case 'reverse':
 	encmediau = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-	mediau = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau)
+	mediau = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau)
 	ran = getRandom('.mp3')
 	exec(`ffmpeg -i ${mediau} -filter_complex "areverse" ${ran}`, (err, stderr, stdout) => {
 fs.unlinkSync(mediau)
 if (err) return reply('Error!')
 hah = fs.readFileSync(ran)
-DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, duration: 359996400, quoted:mek})
+DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, duration: 359996400, quoted:mek})
 fs.unlinkSync(ran)
 	})
 break
 case 'bass':                 
 					encmediao = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					mediao = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediao)
+					mediao = await DogeXeonOP.downloadAndSaveMediaMessage(encmediao)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${mediao} -af equalizer=f=94:width_type=o:width=2:g=30 ${ran}`, (err, stderr, stdout) => {
 						fs.unlinkSync(mediao)
 						if (err) return reply('Error!')
 						hah = fs.readFileSync(ran)
-						DadiBrutalOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, duration: 359996400, quoted:mek})
+						DogeXeonOP.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt: true, duration: 359996400, quoted:mek})
 						fs.unlinkSync(ran)
 					})
 				break
  case 'tomp3':
-					DadiBrutalOP.updatePresence(from, Presence.composing)
+					DogeXeonOP.updatePresence(from, Presence.composing)
 					if (!isQuotedVideo) return reply('Reply to the video')
 					reply(mess.wait)
 					encmediad = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					mediad = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediad)
+					mediad = await DogeXeonOP.downloadAndSaveMediaMessage(encmediad)
 					ran = getRandom('.mp4')
 					exec(`ffmpeg -i ${mediad} ${ran}`, (err) => {
 						fs.unlinkSync(mediad)
 						if (err) return reply(mess.error.api)
 						mhee = fs.readFileSync(ran)
-						DadiBrutalOP.sendMessage(from, mhee, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
+						DogeXeonOP.sendMessage(from, mhee, audio, { mimetype: 'audio/mp4', ptt: true, quoted: mek })
 						fs.unlinkSync(ran)
 					})
 					break
@@ -3379,13 +3379,13 @@ case 'bass':
 
 if (!isQuotedSticker) return reply('reply sticker')
 encmediatoimg = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediatoimg)
+media = await DogeXeonOP.downloadAndSaveMediaMessage(encmediatoimg)
 ran = getRandom('.png')
 exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 fs.unlinkSync(media)
 if (err) return reply('Failed, when converting sticker to image')
 buffer = fs.readFileSync(ran)
-DadiBrutalOP.sendMessage(from, buffer, image, {quoted: mek, caption: 'Here'})
+DogeXeonOP.sendMessage(from, buffer, image, {quoted: mek, caption: 'Here'})
 fs.unlinkSync(ran)
 })
 break
@@ -3393,7 +3393,7 @@ case 'tts':
 					  try{
         if (args.length > 1) {
         const gtts = require('./lib/gtts')(args[0])
-        if (args.length < 2) return DadiBrutalOP.sendMessage(from, 'Where is the text bro??', text, {quoted: mek})
+        if (args.length < 2) return DogeXeonOP.sendMessage(from, 'Where is the text bro??', text, {quoted: mek})
         ngab = budy.slice(7)
         ranm = getRandom('.mp3')
         rano = getRandom('.ogg')
@@ -3404,7 +3404,7 @@ case 'tts':
                 fs.unlinkSync(ranm)
                 buff = fs.readFileSync(rano)
                 if (err) return reply('Failed bro:(')
-                DadiBrutalOP.sendMessage(from, buff, audio, {quoted:mek,ptt:true})
+                DogeXeonOP.sendMessage(from, buff, audio, {quoted:mek,ptt:true})
                 fs.unlinkSync(rano)
             })
         })
@@ -3418,7 +3418,7 @@ case 'tts':
                 fs.unlinkSync(ranm)
                 buff = fs.readFileSync(rano)
                 if (err) return reply(mess.error.api)
-                DadiBrutalOP.sendMessage(from, buff, audio, {quoted:mek,ptt:true})
+                DogeXeonOP.sendMessage(from, buff, audio, {quoted:mek,ptt:true})
                 fs.unlinkSync(rano)
             })
         })
@@ -3430,7 +3430,7 @@ break
                     case 'tourl':
     if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedVideo ) && args.length == 0) {
             boij = isQuotedImage || isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-            owgi = await DadiBrutalOP.downloadMediaMessage(boij)
+            owgi = await DogeXeonOP.downloadMediaMessage(boij)
             res = await upload(owgi)
             reply(res)
             } else {
@@ -3447,7 +3447,7 @@ break
 					if (userLevel === undefined && userXp === undefined) return reply(ind.lvlnul())
 					const requiredXp = 5000 * (Math.pow(2, userLevel) - 1)
 					resul = `◪ *ʟᴇᴠᴇʟ*\n  ├─ ► 𝗡𝗮𝗺𝗲 : ${pushname}\n  ├─ ► 𝗥𝗮𝗻𝗸 : ${role}\n  ├─ ► 𝗫𝗣 : ${userXp}/${requiredXp}\n  └─ ► 𝗟𝗲𝘃𝗲𝗹 : ${userLevel}\n`
-					DadiBrutalOP.sendMessage(from, resul, text, { quoted: mek})
+					DogeXeonOP.sendMessage(from, resul, text, { quoted: mek})
 					.catch(async (err) => {
 					console.error(err)
 					await reply(`Error!\n${err}`)
@@ -3455,17 +3455,17 @@ break
 					break
 					case 'profile':
 					if (!isGroup) return reply(mess.group)
-				    let anuprofileoke = await DadiBrutalOP.groupMetadata(from)
-                    const thu = await DadiBrutalOP.getStatus(anuprofileoke.participants[0], MessageType.text)
-    				DadiBrutalOP.updatePresence(from, Presence.composing)
+				    let anuprofileoke = await DogeXeonOP.groupMetadata(from)
+                    const thu = await DogeXeonOP.getStatus(anuprofileoke.participants[0], MessageType.text)
+    				DogeXeonOP.updatePresence(from, Presence.composing)
     				try {
-					ppimg = await DadiBrutalOP.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
+					ppimg = await DogeXeonOP.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
 					} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 					}
 					profile = `╭─「 *💖ʏᴏᴜʀ ᴘʀᴏꜰɪʟᴇ💖* 」\n│• 𝗡𝗮𝗺𝗲 : ${pushname}\n│• 𝗡𝘂𝗺𝗯𝗲𝗿 : ${sender.split("@")[0]}\n│• 𝗕𝗶𝗼 : ${bio_user}\n│• 𝗫𝗣 : ${getLevelingXp(sender)}\n│• 𝗟𝗲𝘃𝗲𝗹 : ${getLevelingLevel(sender)}\n│• 𝗥𝗮𝗻𝗸 : ${role}\n│• 𝗣𝗠 : wa.me/${sender.split("@")[0]}\n╰──────────────────`
 					buffer = await getBuffer(ppimg)
-					DadiBrutalOP.sendMessage(from, buffer, image, {quoted: mek, caption: profile})
+					DogeXeonOP.sendMessage(from, buffer, image, {quoted: mek, caption: profile})
 					break
 
 //══════════[ STICKER FEATURES ]══════════//
@@ -3478,7 +3478,7 @@ case 'ttp4':
             
 					if (!c) return reply(`Where is the text bro?\nExample :\n${prefix}attp DADI KUHURI`)
 					atetepe12 = await getBuffer(`https://api.lolhuman.xyz/api/${command}?apikey=${lolkey}&text=${encodeURIComponent(c)}`)
-					DadiBrutalOP.sendMessage(from, atetepe12, sticker, { quoted: mek })
+					DogeXeonOP.sendMessage(from, atetepe12, sticker, { quoted: mek })
 					break
 case 'memegenerator': case 'memegen':{
 									if (args.length < 1) return reply(`Reply to sticker with up and down text for example *${prefix + command}* top text|bottom text`)
@@ -3489,10 +3489,10 @@ case 'memegenerator': case 'memegen':{
 										var teks1 = q.split('|')[0] ? q.split('|')[0] : ''
 										var teks2 = q.split('|')[1] ? q.split('|')[1] : ''
 										var enmediaokekek = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-									   var mediiia = await DadiBrutalOP.downloadMediaMessage(enmediaokekek)
+									   var mediiia = await DogeXeonOP.downloadMediaMessage(enmediaokekek)
 										var njay = await uploadImages(mediiia)
 										var resu = await getBuffer(`https://api.memegen.link/images/custom/${teks1}/${teks2}.png?background=${njay}`)
-										DadiBrutalOP.sendMessage(from, resu, image, {caption:'.stikerin bang', thumbnail: Buffer.alloc(0), quoted: mek})
+										DogeXeonOP.sendMessage(from, resu, image, {caption:'.stikerin bang', thumbnail: Buffer.alloc(0), quoted: mek})
 										fs.unlinkSync(mediiia)
 										} catch (e) {
 											reply(mess.eror)
@@ -3508,7 +3508,7 @@ case 'memegenerator': case 'memegen':{
 										reply(mess.wait)
 										var teks2 = args.join(' ')
 										var enmedialel = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-										var mediia = await DadiBrutalOP.downloadMediaMessage(enmedialel)
+										var mediia = await DogeXeonOP.downloadMediaMessage(enmedialel)
 										var njay = await uploadImages(mediia)
 										var resu = `https://api.memegen.link/images/custom/-/${teks2}.png?background=${njay}`
 										sendStickerFromUrl(from,`${resu}`)	
@@ -3524,13 +3524,13 @@ case 'takesticker':
 						if (!isQuotedSticker) return reply(`Reply sticker with caption *${prefix}takestick name|author*`)
 						ppp = `${args.join(' ')}`
 						const encmediaoo1 = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-						const media2 = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediaoo1, `./sticker/${sender}`)
+						const media2 = await DogeXeonOP.downloadAndSaveMediaMessage(encmediaoo1, `./sticker/${sender}`)
 						const packname = ppp.split('|')[0]
 						const author = ppp.split('|')[1]
 						exif.create(packname, author, `takestick_${sender}`)
 						exec(`webpmux -set exif ./sticker/takestick_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
 							if (error) return reply(mess.error.api)
-							DadiBrutalOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: mek})
+							DogeXeonOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: mek})
 							fs.unlinkSync(media2)
 							fs.unlinkSync(`./sticker/takestick_${sender}.exif`)
 						})
@@ -3540,7 +3540,7 @@ case 'stickerwm':
 						if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 							ppp = `${args.join(' ')}`
 							const encmedia9191 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-							const media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedia9191, `./sticker/${sender}`)
+							const media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedia9191, `./sticker/${sender}`)
 							const packname1 = ppp.split('|')[0]
 							const author1 = ppp.split('|')[1]
 							exif.create(packname1, author1, `stickwm_${sender}`)
@@ -3558,7 +3558,7 @@ case 'stickerwm':
 										console.log('Finish')
 										exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
 											if (error) return reply(mess.error.api)
-											DadiBrutalOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: mek})
+											DogeXeonOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: mek})
 											fs.unlinkSync(media)	
 											fs.unlinkSync(`./sticker/${sender}.webp`)	
 											fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
@@ -3571,7 +3571,7 @@ case 'stickerwm':
 							wmsti = body.slice(11)
 							if (!wmsti.includes('|')) return reply(`Send a picture or reply to an image with a caption *${prefix}stickerwm nama|author*`)
 							const encmediaokekak = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-							const media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediaokekak, `./sticker/${sender}`)
+							const media = await DogeXeonOP.downloadAndSaveMediaMessage(encmediaokekak, `./sticker/${sender}`)
 							const packname1 = wmsti.split('|')[0]
 							const author1 = wmsti.split('|')[1]
 							exif.create(packname1, author1, `stickwm_${sender}`)
@@ -3591,7 +3591,7 @@ case 'stickerwm':
 										console.log('Finish')
 										exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
 											if (error) return reply(mess.error.api)
-											DadiBrutalOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: ftex})
+											DogeXeonOP.sendMessage(from, fs.readFileSync(`./sticker/${sender}.webp`), sticker, {quoted: ftex})
 											fs.unlinkSync(media)
 											fs.unlinkSync(`./sticker/${sender}.webp`)
 											fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
@@ -3620,7 +3620,7 @@ case 'stiker':
 
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 const encmedialoli = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-const media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedialoli)
+const media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedialoli)
 ran = '666.webp'
 await ffmpeg(`./${media}`)
 .input(media)
@@ -3634,7 +3634,7 @@ reply('error')
 })
 .on('end', function () {
 console.log('Finish')
-DadiBrutalOP.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+DogeXeonOP.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 fs.unlinkSync(media)
 fs.unlinkSync(ran)
 })
@@ -3643,7 +3643,7 @@ fs.unlinkSync(ran)
 .save(ran)
 } else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
 const encmedialoli22 = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-const media = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedialoli22)
+const media = await DogeXeonOP.downloadAndSaveMediaMessage(encmedialoli22)
 ran = '999.webp'
 reply(mess.wait)
 await ffmpeg(`./${media}`)
@@ -3659,7 +3659,7 @@ reply(`Gagal, pada saat mengkonversi ${tipe} ke stiker`)
 })
 .on('end', function () {
 console.log('Finish')
-DadiBrutalOP.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+DogeXeonOP.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 fs.unlinkSync(media)
 fs.unlinkSync(ran)
 })
@@ -3681,10 +3681,10 @@ var teks1 = q.split('|')[0] ? q.split('|')[0] : ''
 var teks2 = q.split('|')[1] ? q.split('|')[1] : ''
 var imgbb = require('imgbb-uploader')
 var enmediahe1 = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-var media = await DadiBrutalOP.downloadAndSaveMediaMessage(enmediahe1)
+var media = await DogeXeonOP.downloadAndSaveMediaMessage(enmediahe1)
 var njay = await imgbb('520bd6f6209077d1777c2a4f20c509c2', media)
 var resu = await getBuffer(`https://api.memegen.link/images/custom/${teks1}/${teks2}.png?background=${njay.display_url}`)
-DadiBrutalOP.sendMessage(from, resu, image, {quoted: mek})
+DogeXeonOP.sendMessage(from, resu, image, {quoted: mek})
 fs.unlinkSync(media)
 } catch (e) {
 return reply(`${e}`)
@@ -3698,25 +3698,25 @@ case 'rate':
 					rate = body.slice(1)
 					const ra =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const te = ra[Math.floor(Math.random() * ra.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+rate+'*\n\nAnswer : '+ te+'%', text, { quoted: mek})
+					DogeXeonOP.sendMessage(from, 'Question : *'+rate+'*\n\nAnswer : '+ te+'%', text, { quoted: mek})
 					break
                 case 'can':
 					bisakah = body.slice(1)
 					const bisa =['Can', 'Cant', 'Try again','Are you dreaming?','Are you sure you can?']
 					const keh = bisa[Math.floor(Math.random() * bisa.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+bisakah+'*\n\nAnswer : '+ keh, text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+bisakah+'*\n\nAnswer : '+ keh, text, { quoted: mek })
 					break
 				case 'when':
 					kapankah = body.slice(1)
 					const kapan =['Tomorrow','The day after tomorrow','Earlier','4 Days','5 Days','6 Days','1 Week Again','2 Weeks Again','3 Weeks Again','1 Month Again','2 Months','3 Months','4 Months','5 Months','6 Months Again']
 					const koh = kapan[Math.floor(Math.random() * kapan.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+kapankah+'*\n\nAnswer : '+ koh, text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+kapankah+'*\n\nAnswer : '+ koh, text, { quoted: mek })
 					break
          			  case 'is':
 					apakah = body.slice(1)
 					const apa =['Yes','No','Could be','I dont know lmao','Ask the Chicken']
 					const kah = apa[Math.floor(Math.random() * apa.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+apakah+'*\n\nAnswer : '+ kah, text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+apakah+'*\n\nAnswer : '+ kah, text, { quoted: mek })
 					break
 case 'stupid':
       case 'foolish':
@@ -3791,14 +3791,14 @@ case 'stupid':
                   sange = body.slice(1)
 					const sang =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const nge = sang[Math.floor(Math.random() * sang.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+sange+'*\n\nAnswer: '+ nge+'%', text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+sange+'*\n\nAnswer: '+ nge+'%', text, { quoted: mek })
 					break
                 case 'gaycheck':
 					// source code by BRUTAL⛔
                   gayy = body.slice(1)
 					const gay =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const yag = gay[Math.floor(Math.random() * gay.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+gayy+'*\n\nAnswer : '+ yag+'%', text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+gayy+'*\n\nAnswer : '+ yag+'%', text, { quoted: mek })
 					break
                 case 'lesbicheck':
                 case 'lesbiancheck':
@@ -3806,28 +3806,28 @@ case 'stupid':
                   lesbii = body.slice(1)
 					const lesbi =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const bi = lesbi[Math.floor(Math.random() * lesbi.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+lesbii+'*\n\nAnswer : '+ bi+'%', text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+lesbii+'*\n\nAnswer : '+ bi+'%', text, { quoted: mek })
 					break
                 case 'handsomecheck':
 					// source code by BRUTAL⛔
 ganteng = body.slice(1)
 					const gan =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const teng = gan[Math.floor(Math.random() * gan.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+ganteng+'*\n\nAnswer : '+ teng+'%', text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+ganteng+'*\n\nAnswer : '+ teng+'%', text, { quoted: mek })
 					break
 		case 'beautycheck':
 					// source code by BRUTAL⛔
 cantik = body.slice(1)
 					const can =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const tik = can[Math.floor(Math.random() * can.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+cantik+'*\n\nAnswer : '+ tik+'%', text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+cantik+'*\n\nAnswer : '+ tik+'%', text, { quoted: mek })
 					break
 		case 'charactercheck':
 					// source code by BRUTAL⛔
 watak = body.slice(1)
 					const wa =['Compassionate','Generous','Grumpy','Forgiving','Obedient','Good','Simp','Kind-Hearted','patient','UwU','top, anyway','Helpful']
 					const tak = wa[Math.floor(Math.random() * wa.length)]
-					DadiBrutalOP.sendMessage(from, 'Question : *'+watak+'*\n\nAnswer : '+ tak, text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, 'Question : *'+watak+'*\n\nAnswer : '+ tak, text, { quoted: mek })
 				        break
 				
 //══════════[ GAME FEATURES ]══════════//
@@ -3917,7 +3917,7 @@ watak = body.slice(1)
 ]
               const der = dare[Math.floor(Math.random() * dare.length)]
               buffer = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
-              DadiBrutalOP.sendMessage(from, buffer, image, { quoted: mek, caption: '_*DARE*_\n'+ der })
+              DogeXeonOP.sendMessage(from, buffer, image, { quoted: mek, caption: '_*DARE*_\n'+ der })
               break
                             break
        case 'truth':
@@ -4014,7 +4014,7 @@ watak = body.slice(1)
 ]
               const trut = truth[Math.floor(Math.random() * truth.length)]
               buffer = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
-              DadiBrutalOP.sendMessage(from, buffer, image, { quoted: mek, caption: '_*TRUTH*_\n'+ trut })
+              DogeXeonOP.sendMessage(from, buffer, image, { quoted: mek, caption: '_*TRUTH*_\n'+ trut })
               break
               
 //══════════[ OWNER FEATURES ]══════════//
@@ -4023,17 +4023,17 @@ case 'bc':
              
              if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
              if (args.length < 1) return reply('Where is the text?')
-             anu100 = await DadiBrutalOP.chats.all()
-             if (isMedia && !DadiBrutalOP.message.videoMessage || isQuotedImage) {
-             const encmediaboomb = isQuotedImage ? JSON.parse(JSON.stringify(DadiBrutalOP).replace('quotedM','m')).message.extendedTextMessage.contextInfo : DadiBrutalOP
-             bc100 = await DadiBrutalOP.downloadMediaMessage(encmediaboomb)
+             anu100 = await DogeXeonOP.chats.all()
+             if (isMedia && !DogeXeonOP.message.videoMessage || isQuotedImage) {
+             const encmediaboomb = isQuotedImage ? JSON.parse(JSON.stringify(DogeXeonOP).replace('quotedM','m')).message.extendedTextMessage.contextInfo : DogeXeonOP
+             bc100 = await DogeXeonOP.downloadMediaMessage(encmediaboomb)
              for (let _ of anu100) {
-             DadiBrutalOP.sendMessage(_.jid, bc100, image, {quoted: fgi, caption: `*「 DADI KUHURI Broadcast 」*\n\n${body.slice(4)}`})
+             DogeXeonOP.sendMessage(_.jid, bc100, image, {quoted: fgi, caption: `*「 DADI KUHURI Broadcast 」*\n\n${body.slice(4)}`})
 }
              reply('Broadcast success')
              } else {
              for (let _ of anu100) {
-             DadiBrutalOP.sendMessage(_.jid, 
+             DogeXeonOP.sendMessage(_.jid, 
 			{"contentText": `*「 DADI KUHURI BROADCASTING MESSAGE 」*\n\n${body.slice(4)}`,
 			"footerText": `${tanggal}`,
 			"buttons": [
@@ -4053,26 +4053,26 @@ case 'bc2':
 
 if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('The text?')
-anubc2 = await DadiBrutalOP.chats.all()
+anubc2 = await DogeXeonOP.chats.all()
 if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 const encmedia12345 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-buff = await DadiBrutalOP.downloadMediaMessage(encmedia12345)
+buff = await DogeXeonOP.downloadMediaMessage(encmedia12345)
 for (let _ of anubc2) {
-DadiBrutalOP.sendMessage(_.jid, buff, image, { viewOnce:true, caption: `${body.slice(4)}`})
+DogeXeonOP.sendMessage(_.jid, buff, image, { viewOnce:true, caption: `${body.slice(4)}`})
 }
 reply(`Broadcast success ${body.slice(4)}`)
 } else if (isMedia && !mek.message.videoMessage || isQuotedVideo) {
 const encmediaki = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-buff = await DadiBrutalOP.downloadMediaMessage(encmediaki)
+buff = await DogeXeonOP.downloadMediaMessage(encmediaki)
 for (let _ of anubc2) {
-DadiBrutalOP.sendMessage(_.jid, buff, video, { viewOnce:true, caption: `${body.slice(4)}`})
+DogeXeonOP.sendMessage(_.jid, buff, video, { viewOnce:true, caption: `${body.slice(4)}`})
 }
 reply(`Broadcast success ${body.slice(4)}`)
 } else if (isMedia && !mek.message.videoMessage || isQuotedVideo) {
 const encmediadirk = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-buff = await DadiBrutalOP.downloadMediaMessage(encmediadirk)
+buff = await DogeXeonOP.downloadMediaMessage(encmediadirk)
 for (let _ of anubc2) {
-DadiBrutalOP.sendMessage(_.jid, buff, video, { mimetype: Mimetype.gif, quoted: finv, contextInfo: { forwardingScore: 508, isForwarded: true}, caption: `${body.slice(4)}` })
+DogeXeonOP.sendMessage(_.jid, buff, video, { mimetype: Mimetype.gif, quoted: finv, contextInfo: { forwardingScore: 508, isForwarded: true}, caption: `${body.slice(4)}` })
 }
 reply(`Broadcast success ${body.slice(4)}`)
 } else {
@@ -4088,9 +4088,9 @@ if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('Where is the text? ?')
 if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 const encmediabcgc = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-bcgc = await DadiBrutalOP.downloadMediaMessage(encmediabcgc)
+bcgc = await DogeXeonOP.downloadMediaMessage(encmediabcgc)
 for (let _ of groupMembers) {
-DadiBrutalOP.sendMessage(_.jid, bcgc, image, { caption: `*「 DADI KUHURI BROADCAST 」*\n*Group* : ${groupName}\n\n${body.slice(6)}` })
+DogeXeonOP.sendMessage(_.jid, bcgc, image, { caption: `*「 DADI KUHURI BROADCAST 」*\n*Group* : ${groupName}\n\n${body.slice(6)}` })
 }
 reply('')
 } else {
@@ -4103,10 +4103,10 @@ break
 case 'clearall':
 
 if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
-anuclearall = await DadiBrutalOP.chats.all()
-DadiBrutalOP.setMaxListeners(25)
+anuclearall = await DogeXeonOP.chats.all()
+DogeXeonOP.setMaxListeners(25)
 for (let _ of anuclearall) {
-DadiBrutalOP.deleteChat(_.jid)
+DogeXeonOP.deleteChat(_.jid)
 }
 textImg('Successfully deleted all chat')
 break
@@ -4115,8 +4115,8 @@ case 'setppbot':
 if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 if (!isQuotedImage) return reply(`Send a picture with a caption ${prefix}setppbot or tag images that have already been sent`)
 enmediaheheh = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-media = await DadiBrutalOP.downloadAndSaveMediaMessage(enmediaheheh, './database/sampah/media_user')
-await DadiBrutalOP.updateProfilePicture(botNumber, media)
+media = await DogeXeonOP.downloadAndSaveMediaMessage(enmediaheheh, './database/sampah/media_user')
+await DogeXeonOP.updateProfilePicture(botNumber, media)
 reply('Thank you for the new profile photo, my dear owner 😚')
 break
 case 'setbotbio':
@@ -4124,7 +4124,7 @@ case 'setbio':
 if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('The text?')
 iyek = body.slice(8)
-DadiBrutalOP.setStatus(`${iyek}`)
+DogeXeonOP.setStatus(`${iyek}`)
 reply(`Success changing bio to ${body.slice(8)}`)
 break
 case 'setbotname':
@@ -4132,7 +4132,7 @@ case 'setbotname':
 if (!isOwner && !mek.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('Teksnya?')
 anuoke112 = body.slice(11)
-DadiBrutalOP.updateProfileName(anuoke112)
+DogeXeonOP.updateProfileName(anuoke112)
 reply(`Success in changing the name of the bot to ${body.slice(11)}`)
 break
 case 'public':
@@ -4190,43 +4190,43 @@ oi2 = teks.split('|')[1]
 if (Number(oi2) >= 50) return reply('Max 50!')
 if (!Number(oi2)) return reply('The number must be a number!')
 	  for (let i = 0; i < oi2; i++) {
-	  DadiBrutalOP.sendMessage(from, `${oi1}`, MessageType.text)
+	  DogeXeonOP.sendMessage(from, `${oi1}`, MessageType.text)
 	  }
 } else if (!isQuotedSticker && !isQuotedAudio && !isQuotedImage && budy.length < 10) {
 teks = mek.message.extendedTextMessage.contextInfo.quotedMessage.conversation
 if (!Number(args[0])) return reply('Amount must be a number!')
 if (Number(args[0]) >= 50) return reply('Max 50!')
 	  for (let i = 0; i < args[0]; i++) {
-	  DadiBrutalOP.sendMessage(from, teks, MessageType.text)
+	  DogeXeonOP.sendMessage(from, teks, MessageType.text)
 	  }
 } else if (isQuotedSticker) {
 	encmedian = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-	         median = await DadiBrutalOP.downloadAndSaveMediaMessage(encmedian)
+	         median = await DogeXeonOP.downloadAndSaveMediaMessage(encmedian)
 				anutospem = fs.readFileSync(median)
 	if (!Number(args[0])) return reply('Amount must be a number!')
 	if (Number(args[0]) >= 50) return reply('Max 50!')
 	  for (let i = 0; i < args[0]; i++) {
-	  DadiBrutalOP.sendMessage(from, anutospem, sticker)
+	  DogeXeonOP.sendMessage(from, anutospem, sticker)
 	  }
 } else if (isQuotedAudio) {
 	encmediat = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-	            mediat = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediat)
+	            mediat = await DogeXeonOP.downloadAndSaveMediaMessage(encmediat)
 				anutospem2 = fs.readFileSync(mediat)
 	if (!Number(args[0])) return reply('Amount must be a number!')
 	if (Number(args[0]) >= 50) return reply('Max 50!')
 	  for (let i = 0; i < args[0]; i++) {
-	  DadiBrutalOP.sendMessage(from, anu2spem2, audio, {mimetype: 'audio/mp4', duration: 359996400, ptt:true})
+	  DogeXeonOP.sendMessage(from, anu2spem2, audio, {mimetype: 'audio/mp4', duration: 359996400, ptt:true})
 	  }
 } else if (isQuotedImage) {
 	boij = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-	delb = await DadiBrutalOP.downloadMediaMessage(boij)
+	delb = await DogeXeonOP.downloadMediaMessage(boij)
 	teks = body.slice(6)
 	oi1 = teks.split('|')[0]
 oi2 = teks.split('|')[1]
 if (Number(oi2) >= 50) return reply('Max 50!')
 	if (!Number(oi2)) return reply('Amount must be a number!')
 	  for (let i = 0; i < oi2; i++) {
-	  DadiBrutalOP.sendMessage(from, delb, MessageType.image, {caption: oi1})
+	  DogeXeonOP.sendMessage(from, delb, MessageType.image, {caption: oi1})
 	  }
 }
 	  break
@@ -4238,15 +4238,15 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 				if (Number(argzi[1]) >= 50) return reply('Max 50!')
 				if (isNaN(argzi[1])) return reply(`must be a number`)
 				for (let i = 0; i < argzi[1]; i++){
-					DadiBrutalOP.sendMessage(from, argzi[0], MessageType.text)
+					DogeXeonOP.sendMessage(from, argzi[0], MessageType.text)
 				}
 				break
 				      case 'leaveall':
              if (!isOwner) return  reply(mess.only.owner)
-             let totalgroup = DadiBrutalOP.chats.array.filter(u => u.jid.endsWith('@g.us')).map(u => u.jid)
+             let totalgroup = DogeXeonOP.chats.array.filter(u => u.jid.endsWith('@g.us')).map(u => u.jid)
              for (let id of totalgroup) {
              sendMess(id, 'byee!', null)
-             DadiBrutalOP.groupLeave(id)
+             DogeXeonOP.groupLeave(id)
 }
              break
              case 'addvn':
@@ -4255,11 +4255,11 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 					nm = body.slice(7)
 					if (!nm) return reply('Whats the vn name??')
 					boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					delb = await DadiBrutalOP.downloadMediaMessage(boij)
+					delb = await DogeXeonOP.downloadMediaMessage(boij)
 					vien.push(`${nm}`)
 					fs.writeFileSync(`./media/vn/${nm}.mp3`, delb)
 					fs.writeFileSync('./database/vien.json', JSON.stringify(vien))
-					DadiBrutalOP.sendMessage(from, `Success, please check with *${prefix}vnlist*`, MessageType.text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, `Success, please check with *${prefix}vnlist*`, MessageType.text, { quoted: mek })
 					break
 					case 'delvn':
 					if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
@@ -4281,7 +4281,7 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 						teks += `- ${awokwkwk}\n`
 					}
 					teks += `\n*Total : ${vien.length}*\n\n_To retrieve the vn, please reply to this message with the caption of the vn name_`
-					DadiBrutalOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": vien } })
+					DogeXeonOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": vien } })
 					break
 					case 'addimage':
 				if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
@@ -4289,11 +4289,11 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 					nm = body.slice(10)
 					if (!nm) return reply('Whats the name of the image??')
 					boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					delb = await DadiBrutalOP.downloadMediaMessage(boij)
+					delb = await DogeXeonOP.downloadMediaMessage(boij)
 					imagi.push(`${nm}`)
 					fs.writeFileSync(`./media/image/${nm}.jpg`, delb)
 					fs.writeFileSync('./database/imagi.json', JSON.stringify(imagi))
-					DadiBrutalOP.sendMessage(from, `Success, please check with *${prefix}imglist*`, MessageType.text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, `Success, please check with *${prefix}imglist*`, MessageType.text, { quoted: mek })
 					break
 				case 'delimage':
 				if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
@@ -4315,7 +4315,7 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 						teks += `- ${awokwkwk}\n`
 					}
 					teks += `\n*Total : ${imagi.length}*\n\n_To take a picture, please reply to this message with the caption of the image name_`
-					DadiBrutalOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": imagi } })
+					DogeXeonOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": imagi } })
 					break
 					case 'addsticker':
 				if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
@@ -4323,11 +4323,11 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 					nm = body.slice(12)
 					if (!nm) return reply('What is the name of the sticker??')
 					boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					delb = await DadiBrutalOP.downloadMediaMessage(boij)
+					delb = await DogeXeonOP.downloadMediaMessage(boij)
 					setik.push(`${nm}`)
 					fs.writeFileSync(`./media/sticker/${nm}.webp`, delb)
 					fs.writeFileSync('./database/setik.json', JSON.stringify(setik))
-					DadiBrutalOP.sendMessage(from, `Success, please check with *${prefix}liststicker*`, MessageType.text, { quoted: mek })
+					DogeXeonOP.sendMessage(from, `Success, please check with *${prefix}liststicker*`, MessageType.text, { quoted: mek })
 					break
 				case 'delsticker':
 				if (!isOwner && !mek.key.fromMe) return reply(mess.owner)
@@ -4349,7 +4349,7 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 						teks += `- ${awokwkwk}\n`
 					}
 					teks += `\n*Total : ${setik.length}*\n\n_To take a sticker, please reply to this message with the caption of the sticker name_`
-					DadiBrutalOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": setik } })
+					DogeXeonOP.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": setik } })
 					break
 					break
 					
@@ -4366,13 +4366,13 @@ if (Number(oi2) >= 50) return reply('Max 50!')
 						anucgc = []
 						anucgc.push(mentioned[i])
                     }
-					DadiBrutalOP.groupCreate(argz[0], anucgc)
+					DogeXeonOP.groupCreate(argz[0], anucgc)
 					reply(`Success in creating a group ${argz[0]}`)
                 }
 				break
 case 'getbio':
 	  var yy = mek.message.extendedTextMessage.contextInfo.participant
-var p = await DadiBrutalOP.getStatus(`${yy}`, MessageType.text)
+var p = await DogeXeonOP.getStatus(`${yy}`, MessageType.text)
 reply(p.status)
 if (p.status == 401) {
 reply(mess.error.api)
@@ -4384,19 +4384,19 @@ case 'getdp':
 				case 'getpic':
 					if (!isGroup) return reply(mess.only.group)
             mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-            pictt = await DadiBrutalOP.getProfilePicture(mentioned)
+            pictt = await DogeXeonOP.getProfilePicture(mentioned)
             pict = await getBuffer(pictt)
-            DadiBrutalOP.sendMessage(from, pict, image, {quoted: mek})
+            DogeXeonOP.sendMessage(from, pict, image, {quoted: mek})
             break
                     case 'getname':
         var ambl = mek.message.extendedTextMessage.contextInfo.participant
-const sname = DadiBrutalOP.contacts[ambl] != undefined ? DadiBrutalOP.contacts[ambl].notify = undefined ? PhoneNumber('+' + ambl.replace('@s.whatsapp.net', '')).getNumber('international') : DadiBrutalOP.contacts[ambl].notify || DadiBrutalOP.contacts[ambl].vname : PhoneNumber('+' + ambl.replace('@s.whatsapp.net', '')).getNumber('international')
+const sname = DogeXeonOP.contacts[ambl] != undefined ? DogeXeonOP.contacts[ambl].notify = undefined ? PhoneNumber('+' + ambl.replace('@s.whatsapp.net', '')).getNumber('international') : DogeXeonOP.contacts[ambl].notify || DogeXeonOP.contacts[ambl].vname : PhoneNumber('+' + ambl.replace('@s.whatsapp.net', '')).getNumber('international')
 reply(sname)
 break
 case 'leave':
             if (!isGroup) return reply(mess.only.group)
                     if (isGroupAdmins || isOwner) {
-                    	DadiBrutalOP.groupLeave(from)
+                    	DogeXeonOP.groupLeave(from)
                     } else {
                         reply(mess.only.admin)
                     }
@@ -4406,8 +4406,8 @@ case 'getdescgc':
               
 				if (!isGroup) return reply(mess.only.group)
 					anugetdescgc = from
-			   metadete = await DadiBrutalOP.groupMetadata(anugetdescgc)
-				DadiBrutalOP.sendMessage(from, metadete.desc, text, {quoted:mek})
+			   metadete = await DogeXeonOP.groupMetadata(anugetdescgc)
+				DogeXeonOP.sendMessage(from, metadete.desc, text, {quoted:mek})
 				  break
 case 'nsfw':
 
@@ -4495,21 +4495,21 @@ const bMess = {
     buttons: buttonss,
     headerType: 1
 }
-await DadiBrutalOP.sendMessage(from, bMess, MessageType.buttonsMessage, {quoted: mek})
+await DogeXeonOP.sendMessage(from, bMess, MessageType.buttonsMessage, {quoted: mek})
 break
 					case 'opengc':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.group)
                    if (!isBotGroupAdmins) return sticNotAdmin(from)
                    reply(`Successful opening group ${groupName}`)
-						DadiBrutalOP.groupSettingChange(from, GroupSettingChange.messageSend, false)
+						DogeXeonOP.groupSettingChange(from, GroupSettingChange.messageSend, false)
 						break
 						case 'closegc':
 						if (!isGroup) return reply(mess.only.group)
 						if (!isGroupAdmins) return reply(mess.only.admin)
                    if (!isBotGroupAdmins) return sticNotAdmin(from)
 						reply(`Successfully closing the group ${groupName}`)
-						DadiBrutalOP.groupSettingChange(from, GroupSettingChange.messageSend, true)
+						DogeXeonOP.groupSettingChange(from, GroupSettingChange.messageSend, true)
 					break
 case 'grouplink':
 case 'gruplink':
@@ -4520,9 +4520,9 @@ case 'linkgc':
 
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-linkgc = await DadiBrutalOP.groupInviteCode(from)
+linkgc = await DogeXeonOP.groupInviteCode(from)
 yeh = `https://chat.whatsapp.com/${linkgc}\n\n*${groupName}* group link`
-DadiBrutalOP.sendMessage(from, yeh, text, { quoted: fgi })
+DogeXeonOP.sendMessage(from, yeh, text, { quoted: fgi })
 break
 case 'promote' :
 
@@ -4537,10 +4537,10 @@ for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-DadiBrutalOP.groupMakeAdmin(from, mentioned)
+DogeXeonOP.groupMakeAdmin(from, mentioned)
 } else {
 mentions(`Order received, Promoted : @${mentioned[0].split('@')[0]} to an admin in *${groupMetadata.subject}*`, mentioned, true)
-DadiBrutalOP.groupMakeAdmin(from, mentioned)
+DogeXeonOP.groupMakeAdmin(from, mentioned)
 }
 break
 case 'demote' :
@@ -4556,10 +4556,10 @@ for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-DadiBrutalOP.groupDemoteAdmin(from, mentioned)
+DogeXeonOP.groupDemoteAdmin(from, mentioned)
 } else {
 mentions(`Order received, Demoted : @${mentioned[0].split('@')[0]} to a member`, mentioned, true)
-DadiBrutalOP.groupDemoteAdmin(from, mentioned)
+DogeXeonOP.groupDemoteAdmin(from, mentioned)
 }
 break
 case 'demoteall':
@@ -4571,7 +4571,7 @@ members_id = []
 for (let mem of groupMembers) {
 members_id.push(mem.jid)
 }
-DadiBrutalOP.groupDemoteAdmin(from, members_id)
+DogeXeonOP.groupDemoteAdmin(from, members_id)
 break
 case 'promoteall':
 
@@ -4582,7 +4582,7 @@ members_id = []
 for (let mem of groupMembers) {
 members_id.push(mem.jid)
 }
-DadiBrutalOP.groupMakeAdmin(from, members_id)
+DogeXeonOP.groupMakeAdmin(from, members_id)
 break
 case 'add' :
 
@@ -4593,7 +4593,7 @@ if (args.length < 1) return reply('Who wants to be added??')
 if (args[0].startsWith('08')) return reply('Use country code bro')
 try {
 num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-DadiBrutalOP.groupAdd(from, [num])
+DogeXeonOP.groupAdd(from, [num])
 } catch (e) {
 console.log('Error :', e)
 reply('Failed to add target, maybe because in private')
@@ -4611,14 +4611,14 @@ mek.message.extendedTextMessage === null
 return reply("Tag the target you want to kick!");
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid;
 if (mentioned.length > 1) {
-DadiBrutalOP.groupRemove(from, mentioned);
+DogeXeonOP.groupRemove(from, mentioned);
 reply(mess.success);
 } else if (mentioned.length < 1) {
 anukick = mek.message.extendedTextMessage.contextInfo.participant;
-DadiBrutalOP.groupRemove(from, [anukick]);
+DogeXeonOP.groupRemove(from, [anukick]);
 reply(mess.success);
 } else {
-DadiBrutalOP.groupRemove(from, mentioned);
+DogeXeonOP.groupRemove(from, mentioned);
 reply(mess.success);
 }
 break;
@@ -4640,16 +4640,16 @@ case 'setname':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-DadiBrutalOP.groupUpdateSubject(from, `${body.slice(9)}`)
-DadiBrutalOP.sendMessage(from, `\`\`\`Success ✅, Renamed the group to\`\`\` *${body.slice(9)}*`, text, { quoted: mek })
+DogeXeonOP.groupUpdateSubject(from, `${body.slice(9)}`)
+DogeXeonOP.sendMessage(from, `\`\`\`Success ✅, Renamed the group to\`\`\` *${body.slice(9)}*`, text, { quoted: mek })
 break
 case 'setdesc':
 
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-DadiBrutalOP.groupUpdateDescription(from, `${body.slice(9)}`)
-DadiBrutalOP.sendMessage(from, `\`\`\`Success ✅, Changing group description\`\`\` *${groupMetadata.subject}* Became: *${body.slice(9)}*`, text, { quoted: fgi })
+DogeXeonOP.groupUpdateDescription(from, `${body.slice(9)}`)
+DogeXeonOP.sendMessage(from, `\`\`\`Success ✅, Changing group description\`\`\` *${groupMetadata.subject}* Became: *${body.slice(9)}*`, text, { quoted: fgi })
 break
 case 'setgrouppp':
 case 'setgruppp':
@@ -4660,8 +4660,8 @@ if (!isGroupAdmins && !mek.key.fromMe) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 if (isQuotedImage) {
 let encmediasetppgc = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-let media = await DadiBrutalOP.downloadMediaMessage(encmediasetppgc)
-DadiBrutalOP.updateProfilePicture(from, media)
+let media = await DogeXeonOP.downloadMediaMessage(encmediasetppgc)
+DogeXeonOP.updateProfilePicture(from, media)
 .then((res) => reply(jsonformat(res)))
 .catch((err) => reply(jsonformat(err)))
 } else {
@@ -4688,12 +4688,12 @@ case 'gcinfo':
 
 if (!isGroup) return reply(mess.only.group)
 try {
-var pic = await DadiBrutalOP.getProfilePicture(from)
+var pic = await DogeXeonOP.getProfilePicture(from)
 } catch {
 var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
 }
 let ingfo = `*G R O U P I N F O*\n\n*Name :* ${groupName}\n*Group ID :* ${from}\n*Made :* ${moment(`${groupMetadata.creation}` * 1000).tz('Asia/Kolkata').format('DD/MM/YYYY HH:mm:ss')}\n*Group Owner :* @${groupMetadata.owner.split('@')[0]}\n*Number of Admins :* ${groupAdmins.length}\n*Number of participants :* ${groupMembers.length}\n*Welcome :* ${isWelkom ? 'Aktif' : 'Mati'}\n*AntiLink :* ${isAntiLink ? 'Aktif' : 'Mati'}\n*Desc :* \n\n${groupMetadata.desc}`
-DadiBrutalOP.sendMessage(from, await getBuffer(pic), image, {quoted: mek, caption: ingfo, contextInfo: {"mentionedJid": [groupMetadata.owner.replace('@c.us', '@s.whatsapp.net')]}})
+DogeXeonOP.sendMessage(from, await getBuffer(pic), image, {quoted: mek, caption: ingfo, contextInfo: {"mentionedJid": [groupMetadata.owner.replace('@c.us', '@s.whatsapp.net')]}})
 break
 case 'resetlinkgc':
 case 'resetlinkgroup':
@@ -4708,7 +4708,7 @@ if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins && !mek.key.fromMe) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 json = ['action', 'inviteReset', from]
-DadiBrutalOP.query({json, expect200: true})
+DogeXeonOP.query({json, expect200: true})
 reply('Successfully Reset Group Link')
 break
        case 'online':
@@ -4718,8 +4718,8 @@ break
              if (!isGroup) return reply(`Only group`)
              try {
              let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
-             let online = [...Object.keys(DadiBrutalOP.chats.get(ido).presences), DadiBrutalOP.user.jid]
-             DadiBrutalOP.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join `\n`, text, { quoted: mek, contextInfo: { mentionedJid: online }})
+             let online = [...Object.keys(DogeXeonOP.chats.get(ido).presences), DogeXeonOP.user.jid]
+             DogeXeonOP.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join `\n`, text, { quoted: mek, contextInfo: { mentionedJid: online }})
              } catch (e) {
              reply(`${e}`)
 }
@@ -4743,9 +4743,9 @@ case 'sticktag':
 			if (!isGroupAdmins && !mek.key.fromMe) return reply('only admin and bot owner can use this feature')
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             encmediau = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4756,13 +4756,13 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, sticker, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, sticker, options)
             fs.unlinkSync(file)
             } else if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
             encmediau = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4773,13 +4773,13 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, image, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, image, options)
             fs.unlinkSync(file)
         } else if ((isMedia && !mek.message.videoMessage || isQuotedAudio) && args.length == 0) {
             encmediau = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4792,13 +4792,13 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, audio, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, audio, options)
             fs.unlinkSync(file)
          } else if ((isMedia && !mek.message.videoMessage || isQuotedVideo) && args.length == 0) {
             encmediau = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4810,13 +4810,13 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, video, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, video, options)
             fs.unlinkSync(file)
         } else if ((isMedia && !mek.message.videoMessage || isQuotedDocument) && args.length == 0) {
             encmediau = isQuotedDocument ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4828,13 +4828,13 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, document, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, document, options)
             fs.unlinkSync(file)
         }  else if ((isMedia && !mek.message.videoMessage || isQuotedVideo) && args.length == 0) {
             encmediau = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await DadiBrutalOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
+            file = await DogeXeonOP.downloadAndSaveMediaMessage(encmediau, filename = getRandom())
             value = args.join(" ")
-            var group = await DadiBrutalOP.groupMetadata(from)
+            var group = await DogeXeonOP.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -4846,7 +4846,7 @@ case 'sticktag':
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            DadiBrutalOP.sendMessage(from, ini_buffer, video, options)
+            DogeXeonOP.sendMessage(from, ini_buffer, video, options)
             fs.unlinkSync(file)
         } else{
           reply(`reply image/document/gif/sticker/audio/video with caption ${prefix}totag`)
@@ -4872,7 +4872,7 @@ options = {
 text: `Here is the group owner : https://wa.me/${from.split("-")[0]}`,
 contextInfo: { mentionedJid: [from] }
 }
-DadiBrutalOP.sendMessage(from, options, text, { quoted: mek })
+DogeXeonOP.sendMessage(from, options, text, { quoted: mek })
 break
 case 'contag':
 
@@ -4932,7 +4932,7 @@ reply(`${err}`)
     e = String(e)
     if (!e.includes("this.isZero") && !e.includes("jid")) {
 	console.log('Error : %s', color(e, 'red'))
-	DadiBrutalOP.sendMessage(`${owner}@s.whatsapp.net`, `─────「 *ALERT-ERROR* 」─────\n\n\`\`\`${e}\`\`\`\n\n────────────────────`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Dream Guy BRUTAL",body:"Dont forget to subscribe BRUTAL",previewType:"PHOTO",thumbnail:fs.readFileSync('./media/dogepic1.jpg'),sourceUrl:"https://wa.me/919101765679"}}})
+	DogeXeonOP.sendMessage(`${owner}@s.whatsapp.net`, `─────「 *ALERT-ERROR* 」─────\n\n\`\`\`${e}\`\`\`\n\n────────────────────`, MessageType.text, {contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: "Dream Guy BRUTAL",body:"Dont forget to subscribe BRUTAL",previewType:"PHOTO",thumbnail:fs.readFileSync('./media/dogepic1.jpg'),sourceUrl:"https://wa.me/919101765679"}}})
         }
 	// console.log(e)
 	}

