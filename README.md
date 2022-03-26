@@ -63,23 +63,23 @@ heroku/nodejs
 ```
 ## `For Termux/Ssh/Ubuntu`
 ```bash
-🦄 apt update
-🦄 apt upgrade
-🦄 pkg update && pkg upgrade 
-🦄 pkg install hot
-🦄 pkg install bash
-🦄 pkg install libwebp
-🦄 pkg install git -y
-🦄 pkg install nodejs -y 
-🦄 pkg install ffmpeg -y 
-🦄 pkg install wget
-🦄 pkg install imagemagick -y
-🦄 git clone https://github.com/DGXeon/DogeBot2
-🦄 cd DogeBot3
-🦄 ls
-🦄 rm -rf session.json
-🦄 npm start
-🦄 scan qr code within 15seconds
+apt update
+apt upgrade
+pkg update && pkg upgrade 
+pkg install hot
+pkg install bash
+pkg install libwebp
+pkg install git -y
+pkg install nodejs -y 
+pkg install ffmpeg -y 
+pkg install wget
+pkg install imagemagick -y
+git clone https://github.com/DGXeon/DogeBot2
+cd DogeBot3
+ls
+rm -rf session.json
+npm start
+scan qr code within 15seconds
 ```
 ## Installation Video 👇
 - Review video [Click here](https://youtu.be/zXvwqA8LvTw)
